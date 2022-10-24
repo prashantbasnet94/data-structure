@@ -1,5 +1,69 @@
 /*
 
+
+Depth first search/ Travesal
+    ----------------------------
+    The search follows one branch of the tree down as many levels as possible until the target node is found or the end is reached
+    When the search cannot go any further it continues at the nearset ancestor with an unexplored child
+
+                       1
+                2           5
+            3       4   6       7
+
+    DPS has a lower momory requirement than BFS, cause it's not necessary to store all the childs pointers at each level
+    
+    The idea with Depth First Search is that we want to go deep as possible on tree or graph usally starting from the left side and then start going to the right
+    until travesal is done. 
+    As the name suggest we go deep first
+
+                                         1           
+                                2        5       9     
+                            3         6      8        10
+                        4       7
+DFS is like walking through the maze go far as we can and when we hit a dead end, you turn back around and go the next point where you can make left or right turn
+until you get to the end of maze
+        
+
+Eg:
+                   9
+            4           20
+        1       6   15      170
+
+BFS: [9,4,20,1,6,15,170]
+DFS: [9,4,1,6,20,15,170]
+
+
+DFS:
+         |
+       |   | 
+       |   |
+      | | | | 
+
+What is advange of one over the other?
+What type of travesal to do?
+when to use one over the other?
+
+Time Complexity:
+DFS and BFS visit all nodes i.e O(N)
+When we are trying to traverse tree or graph. we are really trying to walk through the tree without ever repeating ourselves.
+The order is the thing that matters when it comes to BFS or DFS
+
+
+
+Depth First Search:
+-------------------- Read comparision on BFS note.
+On the other hand, DFS is opposite. If you know that the node is likely at the lower level of a tree, perhaps DPS is better
+DPS is really good at asking the quesition: Does the path exist to a certain node from a sources node to a target node
+
+1. Uses less momory
+2. Does path exist?
+
+Downside:
+1. Can get slow if the tree/graph is really really deep
+
+
+
+
 Three ways to do Depth First Search:
         101
       33     105     
@@ -23,8 +87,9 @@ Three ways to do Depth First Search:
     case2: [9,4,1,6,20,15,170]
 
 3. PostOrder:
-    Going all the way down starts from left to right and then parent
+    Going all the way down, starts from left to right and then parent
     case1:[33, 105, 101]
+    case2: [1, 6 , 4, 15 , 170 , 20, 9]
 
 
 Most of the time depth first search is implmented with Recursion:

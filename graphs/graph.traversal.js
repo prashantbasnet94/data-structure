@@ -10,6 +10,7 @@ Graph Travesal is same as tree traversal. Tree are simply a type of graph.
 Using the same technique, instead of using left and right properties, perhaps there is 10 children. 
 We can do the same thing using DFS and BFS
 
+BFS:
 This is really powerful, graphs are used to model real life models such as recommednation engine in amazon.
 What types of items are perhaps related, or closet realted to the last book that we bought.
 THey might use BFS to determine closest realtion
@@ -20,5 +21,5 @@ vs
 
 DFS:
 Good to see if something exist.
-
+We are able to go really deep 
 */
