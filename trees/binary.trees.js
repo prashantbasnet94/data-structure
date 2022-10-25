@@ -59,6 +59,8 @@ Full Binary Tree:
 
 */
 
+
+
 function BinaryTreeNode (value){
     this.value = value
     this.left = null
@@ -85,4 +87,129 @@ function BinaryTreeNode (value){
 
     Our search is optimized using O(logN)
 
-*/
+
+    With Binary Trees, there are traverses and there are search types:
+
+    Search Types:
+    Breadth First Search
+    Depth First Search
+
+    Traverses:
+    In order
+    Pre Order
+    Post order
+
+These are the tools that will best help you implment your solution when it comes to navigating through binary tree
+
+Question:
+1. Given a binary tree, find it's maximum depth.
+    Maximum depth is the number of nodes along the longest path from the root node to the furthest leaf node
+  
+
+ Verify our constarint?
+
+1. What do we return if the tree is empty?
+    return 0
+2. Tree with only root node?
+    return 1
+
+
+ Write out somet test cases:
+
+1.              (X)
+               /   \
+            (X)    (X)
+                  /   \    
+                (X)   (X)  
+                      /  \
+                    (X)  (X)  
+                    /
+                  (X)
+            return 5
+     Here, our answer is 5, number of nodes in the longest path       
+
+2. null
+    return 0
+
+3.   (X)
+    /   \
+  null  null
+  return 1
+
+4. Worst Case:
+        (X)
+       /   \
+      null   (X)
+            /   \
+           null  (X)
+                /    \
+             null     (X)
+                     /   \
+                  null   null
+            retun 5
+In order to traverse down any of the node, you are going to follow along the path.
+This is significant because when it comes to your space and time complexity, it's always going to be O(N)
+
+             9
+        4         20
+    1       6   15      170
+*/  
+
+let 
+Tree = require('./binary.search.tree'),
+tree = new Tree()
+
+tree.insert(9)
+tree.insert(4)
+tree.insert(6)
+tree.insert(20)
+tree.insert(170)
+tree.insert(15)
+tree.insert(1)
+
+ 
+/*
+function inorder(tree, maxDepth = 1){
+    if(tree.left){  
+        inorder(tree.left, maxDepth++)
+    }
+    if(tree.right){
+        inorder(tree.right, maxDepth++)
+    }
+    return maxDepth
+}
+
+
+function findMaxDepth(tree){
+        if(!tree){
+            return 0
+        }
+        let maxDepth = 1
+        if(tree.left === null && tree.right === null){
+            return maxDepth
+        }
+        return inorder(tree.root, [], 1)
+}
+console.log(findMaxDepth(tree))
+
+}*/
+// --------- FIND MAX DEPTH ---------------
+function myMaxDepth(tree, maxDepth = 1){
+    if(!tree){
+        return maxDepth
+    }
+    maxDepth++
+    return Math.max(myMaxDepth(tree.left,maxDepth), myMaxDepth(tree.right, maxDepth))
+}
+
+function findMaxDepth2(tree){
+    if(!tree){
+        return 0
+    }
+    if(tree.left === null && tree.right === null){
+        return 1
+    }
+    return myMaxDepth(tree.root, 0)
+}
+
+console.log(findMaxDepth2(tree))

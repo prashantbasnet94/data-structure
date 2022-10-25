@@ -80,16 +80,133 @@ Three ways to do Depth First Search:
     case1 : [33,101,105]
     case2 : [1,4,6,9,15,20,170] 
 
+    1. Starts from parent node, then go left i.e 4, go left i.e 1, go left i.e null , then comeback and grab 1 i.e list = [1] then go right
+    2. Since nothing to go right then comeback to 4, grab it i.e list = [1, 4], then go right i.e 6, then go left there's nothing,
+         then go to the right there's nothing, then comeback to 6 and grab it i.e [1, 4, 6]
+    3. Comeback to 4, then comeback to 9, grab it i.e list = [1, 4, 6, 9]
+    4. Go to the right i.e 20, then go to the left i.e 15 then go to the left i.e null then comeback at 15 and grab it i.e list = [1, 4, 6, 9, 15], 
+        go to the left there's nothing, go to the right there's nothing then comeback to 20 and grab it i.e [1, 4, 6, 9, 15, 20]
+    5. The go to the right i.e from 20 to 170, then go left i.e null, then go right i.e null then comeback and insert 170 i.e [1, 4, 6, 9, 15, 20, 170]
+
+       
+    tips:
+    Go left as far as we can before we finally take the node, 
+
 2. PreOrder:
-    Starts from parent node, then grab the child node from left to  right
+    Starts from parent node, grap the parent node, then grab the child node from left to  right
+    a. Start from parrent node i.e 9 grab it, go the left grab it i.e [9,4], then go to the left then grab it i.e [9,4,1],
+    b. Since nothing to go to left or right, comeback to 4 then go right and grab it i.e [9,4,1, 6]
+    c. Since nothing to go left or right, comeback to 4, comeback to 9, then go right and grab it i.e [9,4,1, 6,20]
+    d. Go to the left grab it. i.e [9,4,1, 6,20, 15], then go to the left null , then go to the right i.e null then comeback to 15,
+      then comeback to 20, then go to the right i.e 170 grab it i.e [9,4,1, 6,20, 170]
+
+    tips:
+        As we go through we grab the value
+
     Useful for recreating a tree
     case1: [101,33,105]    
     case2: [9,4,1,6,20,15,170]
 
+    NRL
+    preorder takes the node value as we go through
+
+             9
+        4         20
+    1       6   15      170
+    
 3. PostOrder:
+    Start form the parent node, go to the left as far as we can 
+    1. Start from the parent node i.e 9, go to the left i.e 4, go to the left i.e 1, go to the left i.e null , the comback and go to the right i.e null
+        comeback and grab 1 i.e list = [1]
+    2. Then comback to 4, go the right i.e 6, go to the left i.e null and then comeback and go to the right i.e null, then comeback and grab that 6 i.e list = [1, 6]
+    3. Then comback to 4, then grab it i.e list = [1,6,4]
+    4. Then comeback to 9 and go the right i.e 20, now to the left, i.e 15 and go to the left i.e null , then comeback to 15 and go to right i.e null, comeback to 15
+        and grab it i.e list =  [1,6,4,15]
+    5. The comeback to 20, go to the right i.e 170. go to left i.e null and comeback to 170, go to right i.e null. 
+    6. Since righit is also null then comeback to 170, grab it i.e  [1,6,4,15, 170]
+    7. The comeback to 20, grab it i.e list = [1,6,4,15, 170,20]
+    8. The comeback to 9, grab it i.e list = [1,6,4,15, 170,20,9]
+
+
+
     Going all the way down, starts from left to right and then parent
     case1:[33, 105, 101]
     case2: [1, 6 , 4, 15 , 170 , 20, 9]
+
+    tips:
+     We are going to go as far right and as far left as we can before we finally take the node value
+
+                    1
+                  /   \      
+                2       3
+             /    \       \
+            4      5        6
+             \
+              7
+            /
+           8
+1.  PreOrder: NRL
+    --------------
+    Start from the root i.e 1, and get 1 i.e list = [1].
+    Then go right and get 3, i.e list = [1,3]
+    then go right and get 6, i.e list = [1,3,6]
+    the go right i.e null then comeback and go left i.e null, again comeback to 3, go left i.e null, comeback to 1, and go left i.e 2
+    get that node to the list i.e list = [1,3,6, 2]
+    then still prioritize going right, so go to 5, get that 5 i.e  list = [1,3,6, 2, 5]
+    then go to right i.e null and comeback and explore to left i.e null, then comeback to 5, then comeback to 2, then go to left i.e 4,
+    take that 4 to the list i.e list = [1,3,6, 2, 5, 4]
+
+    then go right i.e 7, take 7, i.e list = [1,3,6, 2, 5, 4, 7]
+    then go right i.e null and comeback and then go to 8, take that 8 to the list = [1,3,6, 2, 5, 4, 7,8]
+
+
+
+2. InOrder: RNL
+    ------------
+     Go right as far as we can before we finally take the node, 
+     start from the root i.e 1, go right go right go right when hits the null, then come back and take 6 then go left ,
+     there's nothing, come back take 3. i.e list = [6,3] then go left from 3, there is nothing then come back to 3 and then comeback to 1,
+     then take 1 i.e list = [6,3,1].
+
+     Then go left i.e 2, go right i.e 5 and then go right 5, then go right i.e null
+     come back take 5 i.e list = [6,3,1,5]
+     then come back and take 2, i.e list = [6,3,1,5,2]
+     then go left i.e 4, then go right i.e 7, then go right i.e null, then come back take 7 i.e list = [6,3,1,5,2,7]
+     then go left i.e 8, then go right i.e null, then comeback to 8, i.e list = [6,3,1,5,2,7,8]
+     then go left i.e null, then comeback, then comeback i.e 7, then comback i.e 4, take 4 i.e list = [6,3,1,5,2,7,8, 4]
+
+     Then go left 
+
+3.  PostOrder: RLN
+    --------------
+    We are going to go as far right and as far left as we can before we finally take the node value
+    Start form the root i.e 1, we are going to go right, go right, go right i.e null there is nothing 
+    comeback and go left there's nothing, then comeback and take the 6, i.e list = [6]
+
+    comeback i.e 3, then go left i.e null, there's nothing then comeback to 3, and then take it i.e list =[6,3]
+
+    then comeback i.e 1, then go left, then go right i.e 5, then go right i.e null, then comeback i.e 5 and then go left i.e null, then comeback to 5,
+    then take 5 i.e list = [6,3,5]
+
+    then comeback i.e 2, then go left i.e 4, then go right i.e 7, then go right i.e null, then comeback to 7 then go left i.e 8, then go right i.e null, then
+    comeback  to 8, then go left i.e null, then comeback to 8 , then take 8 i.e list = [6,3,5,8].
+
+    Then comback to 7, then take it i.e list = [6,3,5,8,7]
+    
+    then comback to 4, go left i.e null, then take 4 i.e list = [6,3,5,8,7,4]
+
+    then comeback to 2, and take 2, i.e list  [6,3,5,8,7,4, 2]
+    finally comeback and take 1, i.e list = [6,3,5,8,7,4, 2, 1]
+
+
+
+
+
+
+
+
+
+
 
 
 Most of the time depth first search is implmented with Recursion:
