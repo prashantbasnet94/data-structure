@@ -278,3 +278,4 @@ tree.insert(6)
 tree.insert(1) 
 console.log(tree.root)
 console.log(tree.breadthfirstsearch())
+

@@ -128,6 +128,8 @@ twoSumTarget4 =(input, target) => {
 
     let myMap = {}
     for( let i = 0; i < input.length; i++){
+    console.log(myMap)
+
         const
             currentChar = input[i],
             indexOfNumberToFind =  myMap[currentChar],
