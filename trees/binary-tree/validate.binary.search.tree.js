@@ -507,7 +507,7 @@ right boundry = no change , stays the same
 
 
 let 
-Tree = require('./binary.search.tree'),
+Tree = require('./tree-traversal/binary.search.tree'),
 tree = new Tree()
 
 tree.insert(9)
