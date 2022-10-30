@@ -384,7 +384,7 @@ so we go left
 // count section section
 
 let 
-Tree = require('./tree-traversal/binary.search.tree'),
+Tree = require('../binary.search.tree'),
 tree = new Tree()
 
 tree.insert(9)

@@ -193,7 +193,7 @@ So that we can go back to them and visit their children
 */
 
 
-let BinarySearchTree = require('./tree-traversal/binary.search.tree')
+let BinarySearchTree = require('../binary-tree/binary.search.tree')
 /*
              9
         4         20

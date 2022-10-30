@@ -317,7 +317,7 @@ right node exist running func for Node {left:...,right: ..., value: 20}
 */
 
 
-let BinarySearchTree = require('./binary.search.tree')
+let BinarySearchTree = require('../binary-tree/binary.search.tree')
 
 
 BinarySearchTree.prototype.DFSInOrder = function () {
