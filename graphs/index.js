@@ -224,7 +224,7 @@ myGraph.addEdge('1', '2');
 myGraph.addEdge('1', '0'); 
 myGraph.addEdge('0', '2'); 
 myGraph.addEdge('6', '5');
-// console.log(myGraph.adjacentList)
+console.log(myGraph.adjacentList)
 
 /*
 https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12372616#overview
