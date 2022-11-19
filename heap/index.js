@@ -133,7 +133,7 @@ The only way that we can insert 45 is at the next available spot. Following Brea
 
     [50,45,25, 20, 35, 10, 15]
       0  1  2   3  4   5    6
-1. In exact dsame vein of what we need to do, we just insert 45 at the end of the array, i.e array.push(45).
+1. In exact same vein of what we need to do, we just insert 45 at the end of the array, i.e array.push(45).
     i. Compare new value i.e 45 with it's parent value and keep comparing and swapping value until we find it's final resting point
        we get the index of 45 i.e 7
        parent is given by formula: Math.floor((index - 1) / 2)

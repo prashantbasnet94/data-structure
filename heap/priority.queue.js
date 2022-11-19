@@ -80,7 +80,7 @@ Writing a class implmentation of a solution are important
 
 */
 class PriorityQueue{
-  constructor(comparator = () => a > b){
+  constructor(comparator = (a, b) => a > b){
     // next thing we want to implment is the array that is going to hold the values inside of the heap structure that represent priority queue
 
     //_ represent private 
@@ -89,7 +89,7 @@ class PriorityQueue{
   }
 
   size(){
-    return this._heap.length()
+    return this._heap.length
   }
   peek(){
     this._heap[0]
@@ -301,3 +301,4 @@ pq.push(7)
 
 
 
+console.log(pq._heap)
