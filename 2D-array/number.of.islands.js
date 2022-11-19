@@ -422,8 +422,8 @@ const data3 = [
     [1, 0, 0],
     [0, 1, 1]
 ]
-console.log(numberofIslands(data))
-console.log(numberofIslands(data3))
+// console.log(numberofIslands(data))
+// console.log(numberofIslands(data3))
 
 
 /*
@@ -615,3 +615,79 @@ Recursive call
     Why is BFS better than DFS in this case, when it comes to space complexity?
     THis is why BFS is better.
 */
+
+
+
+/* 
+******************************************* Revision ****************************************************************
+    [
+        [1  1   1   0   0]
+        [1  1   0   0   0]
+        [1  1   0   0   0]
+        [0  0   1   1   1]
+        [0  0   1   1   1]
+    ]
+
+    When traversing we can either get a land 1 or water 0
+
+    if it's a water,  0 => does nothing to our count
+    if land 1, then {
+        first => can be a new island
+        second => can be part of already explored island
+    }
+
+    so inorder to remove confusion with already discovered land lets convert disoverd land into 0, so it does not disturb our count
+
+
+*/
+
+function breadFirstSearchAndConvertTo0(queue, matrix){
+
+    while(queue.length > 0){
+        let [row, col] = queue.shift()
+
+        // exporling direction around
+
+        for(let dir = 0; dir < direction.length; dir++){
+            let currDir = direction[dir],
+            newRow = row + currDir[0],
+            newCol = col + currDir[1]
+
+            if(newRow < 0 || newRow >= matrix.length || newCol < 0 || newCol >= matrix[0].length ){
+                continue
+            }
+           if(matrix[newRow][newCol] === 1){
+            matrix[newRow][newCol] = 0
+            queue.push([newRow, newCol])
+           }
+            
+        }
+    }
+}
+
+function islandCount(matrix){
+    let exploreIsland = 0
+    // let go through sequentail order and discover parts of lands around them
+
+    for( let row = 0; row < matrix.length ; row++){
+        for(let col = 0; col < matrix[0].length; col ++){
+            console.log(matrix[row][col])
+            if(matrix[row][col] === 1){
+                // since it's a land, let's discover land around 
+                exploreIsland ++
+                matrix[row][col] = 0
+
+                // now let's explore connect lands and also convert them to 0 so that we don't increase our counter when we discover them
+                // using BFS 
+
+                let queue = [[row, col]]
+                // breadFirstSearchAndConvertTo0(queue, matrix)
+                mybfs(matrix, queue)
+            }
+        }
+    }
+
+    return exploreIsland
+}
+console.log(data)
+console.log('islandCount(data)', islandCount(data))
