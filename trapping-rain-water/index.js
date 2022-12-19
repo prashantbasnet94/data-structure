@@ -10,7 +10,8 @@ Test Cases:
 [0,1,0,2,1,0,1,3,2,1,2,1]
 [] => 0
 [1] => 0
-[3,4,3] => 0
+[3,4,3] => 3 * 2
+           height * base
 
 
 Logic:
@@ -177,6 +178,7 @@ trapWater4 = input => {
           }else{
             totalWater += maxLeft - currentHeight
           }
+          leftPointer++
         }else{
           currentHeight = rightValue
           if(currentHeight > maxRight){
@@ -184,12 +186,10 @@ trapWater4 = input => {
           }else{
             totalWater+= maxRight - currentHeight
           }
-        }
-        if(leftValue <= rightValue){
-          leftPointer++
-        }else{
           rightPointer--
+
         }
+        
     } 
     return totalWater
 }
@@ -197,3 +197,5 @@ trapWater4 = input => {
 
 console.log(trapWater4([4,2,0,3,2,5]))
 console.log(trapWater4( [0,1,0,2,1,0,1,3,2,1,2,1]))
+
+console.log('trapWater4',trapWater4([0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2]))

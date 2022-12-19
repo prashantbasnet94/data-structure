@@ -23,6 +23,11 @@ A. Valid Tree
 14     13
 
 BFS = [19, 15, 25, 10, 16, 23, 30, 14, 13]
+
+       PreOrder: NRL (GRAB AS YOU GO) 
+       InOrder: Go down one direction and when hit the null come back and grab it's parent
+       PostOrder: Go down both direction and only when both direction are null grab it;s parent
+
 DFS: {
 NLR    PreOrder    : [19, 15, 10, 14, 13, 16, 25, 23, 30]
 LNR    InOrder     : [14, 10,13,15,16,19, 23, 25,30] ===> No good to us
@@ -100,7 +105,7 @@ function preOrder(list, node){
 
 7.
     A. we go left  form the root and then we go right 
-        i. 15 < 19 && 15 > something
+        i. 15 < 20 && 15 > something
         ii. When we go right from here:
             18 also has to be greater than something and 18 has to be lesser than something
             18 > 15 && 18 < something
@@ -267,8 +272,134 @@ let invalidTree = {
     },
     "value": 9
 },
+validTree = {
+    "left": {
+        "left": null,
+        "right": null,
+        "value": 4
+    },
+    "right": {
+        "left": null,
+        "right": null,
+        "value": 10
+    },
+    "value": 9
+},
 Tree = require('./binary.search.tree'),
 tree = new Tree()
 
 
 console.log(validateTree(invalidTree))
+
+
+/*
+
+              10  
+         5         15   
+      1     7   11      16
+      
+      
+      in order for this to be a valid binary tree
+
+      i. node > node.left && node < node.right
+
+1. @ 10,  10 > something && 10 < something
+    a. if we decide to go left,  5 > something && 5 < 10 
+    b. if go further left, 1 > something && 1 < 5
+
+    here the common patten is if we go left, the right bound updates i.e i.e less than something
+
+2. @ 10, we decide to go right
+    a. if we decide to go right,  15 > 10 && 15 < something
+    b. we go further right, 16 > 15 && 16 < something
+
+    here on going right , the left boundry i.e greater than soemhting updates
+
+
+    Depending on this principal
+
+
+    let's determine which traversal algo to use?
+
+    bfs: [10, 5, 15, 1, 7, 11, 16] => we know we cannot establish any relation using bfs
+
+    how about dfs?
+
+    we have 
+
+              10  
+         5         15   
+      1     7   11      16
+
+    preorder: grab as you go
+
+    [10 , 5 , 1, 7, 10, 15, 11, 16] => looks like this will work 
+    why?
+
+    a.we go from 10 => 5, we know 5 has to lesser than 10
+    b. 5 => 1, we know 1 has to be lesser than 5
+    c. from 1 => 5 => 7, here 7 has to be greater than 5
+
+    ------
+    thus we know we have a realtion we can use or is needed to verify a node , node.left and node.right
+
+    inorder: go down in one direction and if you hit null comeback and grab it
+    result: [1, 5 , 7, 10, 11, 15, 16] => we don't see the realtion we need inorder to verfiy it
+
+    postorder: go down in both direction and if you hit null on both then comeback and grab it
+    [1, 7, 5, 11, 16, 15, 10]
+    here as well we don't see the realtion
+
+
+    thus our requried traversal pattern is DFS > In Preorder
+
+let's write our dfs skeleton    
+*/
+
+function dfs(node, list){
+    list.push(node.value)
+
+    if(node.left){
+        dfs(node.left, list)
+    }
+    if(node.right){
+        dfs(node.right, list)
+    }
+    return list
+}
+
+
+// mofifying to suit our need
+function inrange(value, leftBoundry, rightBoundry){
+    return value > leftBoundry && value < rightBoundry
+}
+
+
+function dfsvalid(node, leftBoundry, rightBoundry){
+    if(!inrange(node.value, leftBoundry, rightBoundry)){
+        return false
+    }
+
+    if(node.left){
+        if(dfsvalid(node.left, leftBoundry, node.value) === false){
+            return false
+        }
+    }
+
+    if(node.right){
+       if(dfsvalid(node.right, node.value, rightBoundry) === false){
+        return false
+       }
+    }
+    return true
+}
+
+
+function validateTree2(tree){
+    return dfsvalid(tree, -Infinity, Infinity)
+}
+
+
+console.log(validateTree2(invalidTree))
+console.log(validateTree2(validTree))
+console.log(validateTree(validTree))

@@ -72,10 +72,10 @@ we know,
 minNodes =0, maxNodes = 2^h 
 
               X
-        X           X
-    X      X    X        X
-Y     Y  Y   Y
-0     1  2   3   4  5 6        7
+        X             X
+    X      X     X        X
+Y     Y  Y   Y  Y Y
+0     1  2   3  4 5    6        7
 
 
 
@@ -148,3 +148,105 @@ tree.insert(1)
 tree.insert(0)
 tree.insert(2)
 console.log( totalNodes(tree))
+
+
+// revision 2nd time
+
+
+        1
+    2
+3
+
+function getTreeHeight2(tree){
+    let
+     currentNode = tree.root,
+     height = 0
+
+     while(currentNode.left){
+        currentNode = currentNode.left
+        height++
+     }
+     return height
+}
+
+function getNodesAtFirstSection(tree){
+    let height = getTreeHeight(tree)
+    return Math.pow(2, height) - 1 
+}
+
+ 
+
+function nodeExist(indexToFind, height, node){
+
+    /*
+
+
+              X
+        X               X*
+    X      X        X        X
+Y     Y  Y   Y     Y  Y
+0     1  2   3     4  5 .    6  7
+                   l         m  r 
+
+                   mid value = 6
+                   4 >= 6 ? false so else statement
+              
+                X
+        X               X
+    X      X        X*        X
+Y     Y  Y   Y     Y  Y
+0     1  2   3     4  5 .    6  7
+                   l  r           
+
+    */
+    let
+     leftPointer = 0,
+     rightPointer = Math.pow(2, height)- 1,
+     currentLevel = 0
+
+     while(currentLevel < height){
+        let midValue = Math.ceil((leftPointer + rightPointer) / 2)
+
+        if(indexToFind >= midValue){
+            // go right
+            node =  node.right
+            leftPointer = midValue
+        }else{
+            node = node.left
+            rightPointer = midValue - 1
+        }
+        currentLevel++
+     }
+    
+     return node !==null
+}
+
+function getNodesAtSecondSection(tree){
+    // considering leaf nodes
+    // set a left pointer to 0 and a rigthPointer to maxLeafNode can contain
+    // move the pointer inward
+
+
+    let
+     height = getTreeHeight(tree)
+     leftPointer = 0,
+     rightPointer = Math.pow(2, height)-1
+
+     while(leftPointer < rightPointer){
+        let midValue = Math.ceil((leftPointer + rightPointer) / 2 )
+
+        if(nodeExist(midValue, height, tree.root)){
+            // go check if any node exist at further right
+            leftPointer = midValue
+        }else{
+            rightPointer = midValue -1
+        }
+     }
+     return leftPointer + 1
+}
+
+function totalNodesCount(tree){
+     return getNodesAtFirstSection(tree) + getNodesAtSecondSection(tree)
+}
+
+console.log('totalNodesCount ', totalNodesCount(tree))

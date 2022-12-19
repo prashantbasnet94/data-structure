@@ -29,6 +29,7 @@ To implement to quick sort
      j is going to scan through the array and compare the element[j] with the pivot to figure out if it's greater or lesser than the pivot 
     3. If the element[j] < pivotElement, then swap element at i and j, then increment both pointer as j is already compared and i holds a position bigger than last
 
+https://www.youtube.com/watch?v=COk73cpQbFQ
 */
 
 
@@ -56,7 +57,8 @@ function quickSort(data) {
 
     return quickSort(data.slice(i))
 }
-
+// ******************** REFACTORING ********************************
+https://youtu.be/COk73cpQbFQ?t=913
 function partition(array, left, right){
     let 
         pivotElement = array[right],
@@ -87,15 +89,61 @@ function finalQuickSort(array, left, right){
     }
 }
 
-function findKthElement(array, k){
+function myQuickSort(array, k){
     const indexToFind = array.length - k
     finalQuickSort(array, 0, array.length -1)
     return array
     return array[indexToFind]
 }
 
-console.log(findKthElement([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0], 1))
+console.log(myQuickSort([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0], 1))
+
+
+
+
 /*
 1. What's the base case? 
 2. What's the recursive case?
 */
+
+
+// ********** Revision ********
+
+
+class QuickSortAlgo{
+    partition(array, left, right){
+        let
+         pivot = array[right],
+         restingPoint = left
+         // [3, 9, 2, 12, 4], left = 0; right = 5
+         // array = [values less than pivot, pivot, values greater than pivot]
+         // current pivot = 4
+         for(let i = left; i < right; i++){
+            // if current values is less than pivot move it to the left
+            if(array[i] < pivot){
+                this.swap(array, i, restingPoint)
+                restingPoint++
+            }
+         }
+         this.swap(array, right, restingPoint)
+         return restingPoint
+    }
+    swap(array, left, right){
+        let temp = array[left]
+        array[left] = array[right]
+        array[right] = temp
+    }
+    quickSort(array, left, right){
+        if(left < right){
+            let partitionIndex = this.partition(array, left, right)
+            this.quickSort(array, left, partitionIndex-1)
+            this.quickSort(array, partitionIndex + 1, right)
+        }
+    }
+    main(array){
+        this.quickSort(array, 0, array.length -1 )
+        return array
+    }
+}
+let quickySort = new QuickSortAlgo()
+console.log(quickySort.main([99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]))

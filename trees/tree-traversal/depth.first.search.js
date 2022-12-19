@@ -75,7 +75,7 @@ Three ways to do Depth First Search:
         4         20
     1       6   15      170
 
-1. Inorder:
+1. Inorder: GO DOWN ONE DIRECTION WHEN IT HITS NULL COMEBACK AND GRAB IT
     W
     case1 : [33,101,105]
     case2 : [1,4,6,9,15,20,170] 
@@ -92,7 +92,7 @@ Three ways to do Depth First Search:
     tips:
     Go left as far as we can before we finally take the node, 
 
-2. PreOrder:
+2. PreOrder: GRAB AS YOU GO
     Starts from parent node, grap the parent node, then grab the child node from left to  right
     a. Start from parrent node i.e 9 grab it, go the left grab it i.e [9,4], then go to the left then grab it i.e [9,4,1],
     b. Since nothing to go to left or right, comeback to 4 then go right and grab it i.e [9,4,1, 6]
@@ -110,11 +110,15 @@ Three ways to do Depth First Search:
     NRL
     preorder takes the node value as we go through
 
+            101
+      33         105     
+
+
              9
         4         20
     1       6   15      170
     
-3. PostOrder:
+3. PostOrder: GO DOWN BOTH DIRECTION AND WHEN BOTH DIRECTION HITS NULL COMEBACK AND GRAB IT
     Start form the parent node, go to the left as far as we can 
     1. Start from the parent node i.e 9, go to the left i.e 4, go to the left i.e 1, go to the left i.e null , the comback and go to the right i.e null
         comeback and grab 1 i.e list = [1]
@@ -145,7 +149,7 @@ Three ways to do Depth First Search:
               7
             /
            8
-1.  PreOrder: NRL
+1.  PreOrder: NRL (GRAB AS YOU GO)
     --------------
     Start from the root i.e 1, and get 1 i.e list = [1].
     Then go right and get 3, i.e list = [1,3]
@@ -161,7 +165,7 @@ Three ways to do Depth First Search:
 
 
 
-2. InOrder: RNL
+2. InOrder: RNL (GO DOWN ONE DIRECTION AND WHEN HIT NULL COMEBACK AND GRAB THAT PARENT NODE)
     ------------
      Go right as far as we can before we finally take the node, 
      start from the root i.e 1, go right go right go right when hits the null, then come back and take 6 then go left ,
@@ -177,7 +181,17 @@ Three ways to do Depth First Search:
 
      Then go left 
 
-3.  PostOrder: RLN
+                    1
+                  /   \      
+                2       3
+             /    \       \
+            4      5        6
+             \
+              7
+            /
+           8
+           
+3.  PostOrder: RLN (GO DOWN BOTH DIRECTION AND ONLY IF BOTH DIRECTION ARE NULL THEN GRAB THAT PARENT NODE)
     --------------
     We are going to go as far right and as far left as we can before we finally take the node value
     Start form the root i.e 1, we are going to go right, go right, go right i.e null there is nothing 

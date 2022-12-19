@@ -5,9 +5,20 @@
        6 => 7 
 
 1 => 2 => 6 => 7 =>3 => 4 =>5
+
+
+Difference between single linked list and doubly linked list is that
+doubly linked list has prev prop i.e {
+    value: nulll,
+    prev: ListNode, 
+    next: ListNode
+}
+
+
+
 Logic:
 
-1. While CurrnetNode.next exist move ahea
+1. While currnetNode.next exist move ahead
 2. Check if currentNode has a child
     a. If child exist childNode = currentNode.child
     b. We need to point currentChild.prev = currentNode
@@ -18,7 +29,7 @@ Logic:
 
 
  1 => 2 => 3 => 4 => 5
-      ||
+      ||  
        6 => 7 
 
 1 => 2 => 6 => 7 =>3 => 4 =>5

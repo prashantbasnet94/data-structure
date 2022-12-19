@@ -66,7 +66,7 @@ There are multiple stages in a dynamic programming solution
 However, every subsequent stage gets more optimized when it comes to space and time complexity.
 We are working through these stages, trying to get to the most optimal solution
 
-So in order for us to understand how to begin at stage one, we need to realize that dynamic programming has it's basis in recursion
+So in order for us to undeneed to realrstand how to begin at stage one, we ize that dynamic programming has it's basis in recursion
 
 Recursive fucntions is the starting point  for figuring out what the first solution for this problem
 
@@ -190,10 +190,10 @@ There's no value lesser than nothing, soo for this reason you don't even need to
 
 
 
+More question to practice:
 
 
-
-
+https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-interviews/learn/lecture/24685746#overview
 
 
 */
