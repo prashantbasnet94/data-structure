@@ -172,7 +172,7 @@ console.log(bs.insert(10))
 console.log(bs.insert(5))
 console.log(bs.insert(15))
 console.log(bs.insert(17))
-console.log(bs.insert(12))
+console.log(bs.insert(17))
 
 console.log(bs.root)
 console.log(bs.remove(15))
