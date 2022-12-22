@@ -185,6 +185,4 @@ console.log(findPairs(
   }
 
 
-
-
   */
