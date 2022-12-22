@@ -50,7 +50,35 @@ function insertionSort(data){
 }
 console.log('insertion sort => ', [10, 2, 5, 1, 8], insertionSort([10, 2, 5, 1, 8]))
 
+/*
+                        sorted array    unsorted array
+[10, 2, 5, 1, 8] =>     [10]            [2, 5, 1, 8]                
 
+value  = 2
+hole =  1
+
+while(hole > 0 && data[hole - 1] > value){
+    data[hole] = data[hole - 1]
+    hole = hole - 1
+}
+                        sorted array    unsorted array
+[10, 2, 5, 1, 8] =>     [2]            [10, 5, 1, 8]              
+
+data[hole] = value
+
+*/
+function insertionSort2(data){
+    for(let i = 1; i < data.length; i ++){
+        let value = data [i],
+        hole = i
+
+        while(hole > 0 && data[hole - 1] >value){
+            data[hole ] = data[hole - 1]
+            hole = hole - 1
+        }
+        data[hole] = value
+    }
+}
 /*
     Selection sort:
     Scans the array and find the smallest value in the array, swaps it with the first element
@@ -75,6 +103,19 @@ function selectionSort(data){
 
 console.log('selection sort => ', [10, 2, 5, 1, 8], selectionSort([10, 2, 5, 1, 8]))
 
+
+function selectionSort2(input){
+    for(let i = 0; i < input.length; i++){
+        let min = i
+        for(let j = i + 1; j < input.length; j++){
+            if(input[j] < data[min]) min = j
+        }
+
+        let temp = input[i]
+        input[i] = input[temp]
+        input[min] = temp
+    }
+}
 
 /*
 Merge Sort:
@@ -117,6 +158,10 @@ function mergeSort(data){
      )
 }
 console.log('merge sort => ', [10, 2, 5, 1, 8], mergeSort([10, 2, 5, 1, 8]))
+
+
+
+
 
 
 /*
