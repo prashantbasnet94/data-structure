@@ -52,7 +52,7 @@ we don't know what those path value probabilities are, so let's calculate them.
 4. let's calculate all of the different steps we can take from C, and let's calculate those as well.
 5. We take those steps and we decrease the k again, we are @ [2, 4], we have one more step to take.
 6. How many different proabailities is there we stay on the grid and you essentially just keep tunneling down 
-   for evert one of those values that could exist and then bring those answers back up. and that gives us the probability for one of these steps
+   for every one of those values that could exist and then bring those answers back up. and that gives us the probability for one of these steps
 7. We then do it for all of the remaining steps, and we bring all those answers together so that we get an overall probability for k with bottom up.
 
 
@@ -99,7 +99,7 @@ So when we know that we can do is fill out some type of DP grid.
 
 
 next, when we start on the top left corner. i.e [0, 0]
-let think how many different grid cells can reach this? if we are moving like a night,
+let think how many different grid cells can reach this? if we are moving like a knight,
 there only two position that can reach [0, 0] i.e [2, 1] and [1, 2]
 every other grid cells cannot possibly reach this spot in one move.
 
@@ -185,7 +185,7 @@ const directions = [
 ]
 
 function probability(N, k, r, c){
-    const dp = new Array(k+1).fill(0).map( o => new Array(N).map( x => new Array(N).fill(0)))
+    const dp = new Array(k+1).fill(0).map( o => new Array(N).fill(0).map( x => new Array(N).fill(0)))
 
     // @ k = 0, our probability is 1
     dp[0][r][c] = 1
@@ -220,6 +220,7 @@ function probability(N, k, r, c){
             res +=dp[k][i][j]
         }
     }
+    return res
 }
 
 /*
@@ -262,7 +263,7 @@ function optimiztedP(N, k, r, c){
                         prevCol = col + dir[1]
 
                     if(prevRow < N && prevRow > -1 && prevCol < N && prevCol > -1){
-                        currDp[row][col] += prevCol[prevRow][prevCol]
+                        currDp[row][col] += prevDp[prevRow][prevCol]
                     }
                 }
             }
@@ -290,3 +291,5 @@ K * N^2
 Space Complexity:
 O(N^2)
 */
+
+console.log('probability',probability(3, 2, 0, 0))

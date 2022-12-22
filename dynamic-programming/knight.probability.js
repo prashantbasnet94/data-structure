@@ -578,14 +578,14 @@ function knightOnBoardProb(n, k, r, c, dp = {}){
     if(k===0) return 1
 
     let response = 0 
-    for(let dir of directions){
+    for (let dir of directions) {
         let
-         nextRow =  r + dir[0],
-         nextCol =  c + dir[1]
-         if(dp[nextRow + '-' + nextCol]) {
+            nextRow = r + dir[0],
+            nextCol = c + dir[1]
+        if (dp[nextRow + '-' + nextCol]) {
             response += dp[nextRow + '-' + nextCol]
-        }else{
-            dp[nextRow + '-' + nextCol] =(knightOnBoardProb(n, k-1,nextRow, nextCol, dp)) / 8
+        } else {
+            dp[nextRow + '-' + nextCol] = (knightOnBoardProb(n, k - 1, nextRow, nextCol, dp)) / 8
             response += dp[nextRow + '-' + nextCol]
         }
 
@@ -594,10 +594,10 @@ function knightOnBoardProb(n, k, r, c, dp = {}){
 }
 
 
-function knightProbability(){
+function knightProbability(n, k, r, c){
     // main thing is to realize here we needed to initalize an array of 2D array
     // the array is going to hold the 2D array state at any given step of K
-    let dp = new Array(k+1).fill(0).map( o => new Array(N).fill(0).map( o => new Array(N).fill(undefined)))
+    let dp = new Array(k+1).fill(0).map( o => new Array(n).fill(0).map( o => new Array(n).fill(undefined)))
     return recursive(n, k, r, c, dp)
 }
 
@@ -635,7 +635,7 @@ function recursive(n, k, r, c, dp ){
     if(dp [k][r][c] !== undefined) return dp[k][r][c]
     let response = 0
     for(let dir of directions){
-        response += (knightOnBoardProb(n, k-1, r + dir[0], c + dir[1], dp)) / 8
+        response += (recursive(n, k-1, r + dir[0], c + dir[1], dp)) / 8
     }
    dp[k][r][c] = response
    return dp[k][r][c]
@@ -657,4 +657,4 @@ function recursive(n, k, r, c, dp ){
     Going to be the same as time complexity i.e O(N^2 * k),because that's the size of our dp
     
 */
-console.log(knightOnBoardProb(6, 2, 2, 2))
+console.log('knightProbability',knightProbability(6, 2, 2, 2))
