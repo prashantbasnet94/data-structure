@@ -1,4 +1,6 @@
 /*
+Solving sub probelm to solve the greater probelm is dynamic programming
+
 
 Bellman and ford utilized these dynamic programming principles in order to capture a solution when it came to figuring out shortest 
 path from source vertex in a directed weighted graph.

@@ -12,7 +12,7 @@
 
     
      
-*/
+
 
 const
  convert = input => {
@@ -27,6 +27,9 @@ const
     const isAlphanumeric = char.charCodeAt()
     return (isAlphanumeric >= 97 && isAlphanumeric <= 122) || (isAlphanumeric >= 48 && isAlphanumeric <= 57)
  },
+
+ */
+const
  checkPalindome = word => {
    let 
     left = 0,
@@ -39,11 +42,13 @@ const
     return true
  },
  isPalindrome = input => {
-   const
-    converted = convert(input),
-    filtered = converted.split('').filter(c => isAlphanumeric(c))
-    return checkPalindome(filtered)
+    input = input.replace(/[^A-Za-z0-9]/g, '').toLowerCase()
+    return checkPalindome(input)
 }
+
 
 console.log(isPalindrome('"A man, a plan, a canal: Panama"'))
  
+
+
+

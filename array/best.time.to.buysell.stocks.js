@@ -24,7 +24,7 @@ sliding window technique
     while (rightPointer < prices.length) {
         //if profitable than buy
         let currentPofit = 0
-        if (prices[rightPointer] < prices[leftPointer]) {
+        if ( prices[leftPointer] < prices[rightPointer]) {
             currentPofit = prices[rightPointer] - prices[leftPointer]
             maxProfit = Math.max(maxProfit, currentPofit)
         } else {
@@ -100,6 +100,7 @@ min:     1  1
 
         for(let i = 1; i < input.length; i++){
             // whatever is greater is stored in dp using min discoved so far
+            //[ 7, 1, 5, 3, 6, 4 ]
             //[ 0, 0, 4, 4, 5, 5 ]
             dp[i] = Math.max(dp[i -1], input[i] - min)
 

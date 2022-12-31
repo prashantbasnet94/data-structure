@@ -344,7 +344,7 @@ we see there's a fresh orage at the bottom of position [0,0]. We do following;
 3. Also add the coordinate of this value into the queue, so that we can process it later part of our BFS.
 
 
-so we take the next value from our queue = [1, 4], current queue = [[1, 0]], our queue size = 0
+so we take the next value from our queue = [1, 4], current queue = [[1, 0]], our count = 0
 [1, 4]
 so we check the immediate top, right, left and down value and look, for any fresh oranges
 
