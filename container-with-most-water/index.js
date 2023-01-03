@@ -92,7 +92,29 @@ containerWithMostWater4 = input => {
                 width = rightPointer - leftPointer,
                 area = height * width
             maxArea = Math.max(maxArea, area)
+            /*
+             0 .1 .2 .3  4  5  
+            [4, 8, 1, 2, 3, 9]
+             a              b
+            a = 0, b = 5
             
+            currentArea = Math.min(4 , 9) * (5-0) = 4 * 5 = 20
+            next, when moving the pointer, which direction to move?
+            
+            if we move a to 8,
+            a = 1, b = 5
+            currentArea = Math.min(8 , 9) * (5-1) = 8 * 4 = 32, notice area increased
+
+            what if we have moved b instead,
+             a = 0, b = 4
+            currentArea = Math.min(4 , 3) * (4-0) = 3 * 4 = 12, notice area decreased
+
+            Here we can see the pattern of which of the value is smaller [a] or [b]? if [a] > [b] ?  b-- : a++
+
+
+
+
+            */
             if(input[leftPointer] <= input[rightPointer]){
                 leftPointer++
             }else{

@@ -81,6 +81,8 @@ const reverseList = function(head){
     }
     return prevBuild
 },
+// 1 => 2 => 3 => 4 => 5 => null
+// null => 5 => 4 => 3 => 2 => 1 => null
 tested = function(head){
     let 
     currNode = head,
@@ -97,6 +99,23 @@ tested = function(head){
     return prev
 }
 
-console.log(reverseLinkedList2([1,2,3,4,5]))
+// console.log(reverseLinkedList2([1,2,3,4,5]))
 
 
+let linkedList = {
+    value: 1,
+    next: {
+        value: 2,
+        next: {
+            value: 3,
+            next: {
+                value: 4,
+                next: {
+                    value: 5,
+                    next: null
+                }
+            }
+        }
+    }
+}
+console.log(reverseLinkedList2(linkedList))

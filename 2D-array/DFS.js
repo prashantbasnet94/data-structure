@@ -269,3 +269,15 @@ Time Complexity:
  */
  
  console.log(traversalDFS(data))
+
+ function learningDFS(matrix, row, col, seen, result){
+   if(!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]){
+      return
+   }
+   result.push(matrix[row][col])
+   seen[row][col] = true
+   
+   for(let dir of direction){
+      dfs(matrix, row + dir[0], col + dir[1], seen, result)
+   }
+ }

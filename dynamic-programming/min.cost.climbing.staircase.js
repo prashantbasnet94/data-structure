@@ -7,6 +7,44 @@ minCost(1) = cost[1]
 i < 0 = return 0
 
 
+
+
+
+
+
+
+            0    1  2   3   4
+    cost = [20  15  30  5]
+
+
+    minCost to reach @ 4 = minCost of(2, 3)
+
+                            minCost(n)
+                        /               \
+                    minCost(n-1)        minCost(n-2)
+
+                    do we want both of them?
+                    we want the min between these two values
+
+                    what is minCost(index = 2)?
+
+
+
+
+
+
+
+                                 minCost(n)
+                        /                        \
+                Min(minCost(n-1)                minCost(n-2))           + cost(n)
+                  /             \                     /       \
+        Min(minCost(n-2), minCost(n-3))  + cost(n - 1)       (minCost(n-3), minCost(n-4))  + cost(n-2)            
+
+
+        Note that,
+        minCost of reaching these steps includes the cost of the step iteself.
+
+        recurrence realtion Math.min(minCost(n-1), minCost(n - 2)) + cost(n)
 */
 
 const cost = [20, 15, 30, 5],
@@ -85,6 +123,7 @@ So we want to memoize these values, meaning that if we calculate any branch 1 ti
 
 //********** After memoization **************/
 
+let count = 0, count2 = 0
 const
 minCostClimbingStairs2 = (cost) => {
 
@@ -95,14 +134,15 @@ minCostClimbingStairs2 = (cost) => {
     const memory = []
     // return final solution
     // we also need to think about what the final solution is truly represented as
-    return Math.min(minCost(n-1, cost, memory), minCost(n-2, cost, memory))
+    return Math.min(minCost2(n-1, cost, memory), minCost2(n-2, cost, memory))
 },
 minCost2 = (i, cost, memory) => {
+
     if(i < 0) return 0
     if(i === 0 || i ===1 )return cost[i]
 
-    if(memory[n]) return memory[i]
-    memory[n] = cost[i] + Math.min(minCost(i -1, cost), minCost(i -2 , cost))
+    if(memory[i]) return memory[i]
+    memory[i] = cost[i] + Math.min(minCost(i -1, cost), minCost(i -2 , cost))
     return memory[i]
 }
 
@@ -229,8 +269,12 @@ function refactoredMinCostClimbingStairsBottomUpOptimization(cost){
     }
     return Math.min(stepOneBack, stepTwoBack)
 }
-console.log(minCostClimbingStairs(cost))
-console.log(minCostClimbingStairs2(cost))
+console.log(minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
+console.log('count', count)
+
+console.log(minCostClimbingStairs2([1,100,1,1,1,100,1,1,100,1]))
+console.log('count2', count2)
+
 console.log(refactoredMinCostClimbingStairsBottomUpOptimization(cost))
 
 

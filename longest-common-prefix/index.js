@@ -29,7 +29,7 @@ const
 
         for (let i = 0; i < smallestSubString.length; i++) {
             for (let j = 1; j < input.length; j++) {
-                if ( i >= input[j].length || ismallestSubString[i] !== input[j][i]) {
+                if ( i >= input[j].length || smallestSubString[i] !== input[j][i]) {
                     return answer
                 }
             }
@@ -37,4 +37,4 @@ const
         }
     }
 
-console.log(longestCommonPrefix(["flower", "flow", "flight"]))
+console.log(longestCommonPrefix2(["flower", "flow", "flight"]))

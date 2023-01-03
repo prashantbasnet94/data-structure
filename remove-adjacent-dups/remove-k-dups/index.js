@@ -124,7 +124,7 @@ removeKDups4 = (input, k) => {
             }           
             counter++
         }
-
+        
         let result = ''
         for(let index in stack){
             const element =  stack[index]

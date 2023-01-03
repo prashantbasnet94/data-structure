@@ -30,6 +30,20 @@ NRL => PreOrder => [1,3,6,2,5,4,7,8]
 RNL => InOrder =>  [6,3,1,5,2,7,8,4]
 RLN => PostOrder => [6,3,5,8,7,4,2,1]
 
+
+           
+                    1
+                  /   \      
+                2       3
+             /    \       
+            4      5        
+             \
+              7
+            /
+           8   
+
+        [1, 3, 2, 5, 4, 7, 8]
+
 */
 class Node {
     constructor(value){

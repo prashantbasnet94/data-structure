@@ -1,3 +1,15 @@
+/*
+https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-interviews/learn/lecture/22329994#overview
+Queues: 
+
+Are very basic in the understanding. Not much deep to cover.
+
+
+
+
+*/
+
+
 class QueueWithStacks{
     constructor(){
         this.in = []
@@ -17,6 +29,7 @@ class QueueWithStacks{
         return this.out.pop()
     }
     //return the value at the start of the queue
+    // next value we will dequeue
     peek(){
         if(this.out.length === 0){
             while(this.in.length !== 0){

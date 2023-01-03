@@ -131,11 +131,9 @@ twoSumTarget4 =(input, target) => {
     console.log(myMap)
 
         const
-            currentChar = input[i],
-            indexOfNumberToFind =  myMap[currentChar],
-            indexOfnumberToFindExist = myMap[currentChar] >= 0
-        if(indexOfnumberToFindExist ){
-            return [indexOfNumberToFind, i]
+            currentChar = input[i]
+        if( myMap[currentChar] !== undefined ){
+            return [myMap[currentChar], i]
         }else{
             const numberToFind = target - currentChar
             myMap[numberToFind] = i
@@ -143,5 +141,6 @@ twoSumTarget4 =(input, target) => {
     }
     return null
 }
-console.log(twoSumTarget4([1,3,7,9,2], 11))
-console.log(twoSumTarget4([3,2,4], 6))
+console.log('twoSumTarget4',twoSumTarget4([1,3,7,9,2], 11))
+console.log('twoSumTarget4',twoSumTarget4([3,2,4], 6))
+

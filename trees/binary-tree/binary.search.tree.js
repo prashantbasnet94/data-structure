@@ -195,8 +195,65 @@ class BinarySearchTree {
                 parentNode = currentNode
                 currentNode = currentNode.left
             } else {
-                // we have a match , get to work
-                // option 1: No right child
+                /*
+                 we have a match , get to work
+                 option 1: No right child
+                         Z  
+                      /    \
+                     A      X
+                    /
+                   B
+                  /
+                 C
+                    to delete B,
+                        i. parentNode = A
+                        ii. currentNode = B
+
+                        check
+                            if parentNode does not exit then 
+                            i. true => this.root = C
+                            else it exist:
+                            i. Parent Exist!
+                                a. If parentValue  A > currentNodeValue B
+                                    parentNode.left = currentNode.left
+                                    i.e A.left = C
+                result:
+                         Z  
+                      /    \
+                     A      X
+                    /
+                  C
+
+
+
+
+
+                Another example:
+
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                         B
+                       /
+                      C
+
+                            
+                                b. If parentValue A < currentNodeValue B
+                                    parentNode.right = curreNode.left
+                                    A.right = C
+
+
+                result:
+                 
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                        C
+
+                            
+                 */
                 if (!currentNode.right) {
                     if (!parentNode) {
                         this.root = currentNode.left
@@ -211,6 +268,63 @@ class BinarySearchTree {
                     }
                 }
                 //    // option 2: node has right child which doesnt have a left child
+
+ /*
+                 option 2: node has right child which doesnt have a left child
+                         Z  
+                      /    \
+                     A      X
+                   /
+                  B
+                    \
+                      C
+                    to delete B,
+                        i. parentNode = A
+                        ii. currentNode = B
+
+                        check
+                            if parentNode does not exit then this.root = currentNode.right
+                            i. true => this.root = C
+                            else it exist:
+                            i. Parent Exist!
+                                a. If parentValue  A > currentNodeValue B
+                                    parentNode.left = currentNode.right
+                                    i.e A.left = C
+                result:
+                         Z  
+                      /    \
+                     A      X
+                    /
+                  C
+
+
+
+                Another example:
+
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                         B
+                           \
+                             C
+
+                            
+                                b. If parentValue A < currentNodeValue B
+                                    parentNode.right = curreNode.right
+                                    A.right = C
+
+                result:
+                 
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                        C
+
+                            
+*/
+                
                 else if (currentNode.right && currentNode.right.left === null) {
                     if (!parentNode) {
                         this.root = currentNode.left
@@ -226,6 +340,63 @@ class BinarySearchTree {
                     }
                 }
                 // option 3: right child has a left child
+ /*
+                 option 2: node has right child which further has a left child
+                         Z  
+                      /    \
+                     A      X
+                   /
+                  B
+                    \
+                      C
+                     / 
+                    D 
+                    to delete B,
+                        i. parentNode = A
+                        ii. currentNode = B
+
+                        check
+                            if parentNode does not exit then this.root = currentNode.right
+                            i. true => this.root = C
+                            else it exist:
+                            i. Parent Exist!
+
+                                a.find the right Child
+                                b.find the right Child's leftMostChild
+                result:
+                         Z  
+                      /    \
+                     A      X
+                    /
+                  C
+
+
+
+                Another example:
+
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                         B
+                           \
+                             C
+
+                            
+                                b. If parentValue A < currentNodeValue B
+                                    parentNode.right = curreNode.right
+                                    A.right = C
+
+                result:
+                 
+                         Z  
+                      /    \
+                     A      X
+                       \ 
+                        C
+
+                            
+*/
                 else {
                     // find the right child's left most child
                     let

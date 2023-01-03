@@ -1,4 +1,3 @@
-const { array } = require('yargs')
 
 function quickSelect(array, left, right, indexToFind) {
     if (left < right) {

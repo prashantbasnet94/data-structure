@@ -162,3 +162,42 @@ const
     console.log(testMyPalindrome(test2))
 
     console.log(testMyPalindrome(test3))
+
+
+
+    const isPalindromeMore =( text, leftPointer, rightPointer) => {
+
+        while(leftPointer <= rightPointer){
+            if(text[leftPointer] !== text[rightPointer]){
+                return false
+            }
+            leftPointer++
+            rightPointer--
+        }
+        return true
+    }
+
+    const isPalindrome = text => {
+        let leftPointer = 0 , rightPointer = text.length - 1
+
+        while(leftPointer <rightPointer){
+            if(text[leftPointer] !== text[rightPointer]){
+                 return isPalindromeMore(text, leftPointer + 1, rightPointer) || isPalindromeMore(text, leftPointer , rightPointer + 1)
+            }
+            leftPointer++
+            rightPointer--
+        }
+        return true
+    }
+    function palindromeString(text){
+        const transformedTxt = text.replace(/[^A-Za-z0-9]/g, '').toLowerCase()
+        console.log('transformed', transformedTxt)
+        if(text.length < 2)return true
+        return isPalindrome(transformedTxt)
+    }
+
+
+    console.log('palindromeString',palindromeString("abca"))
+    console.log('palindromeString',palindromeString("aba"))
+
+

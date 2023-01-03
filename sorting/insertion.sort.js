@@ -67,6 +67,7 @@ same and same
 
 
 */
+//[ 7, 2, 4, 1, 5, 3]
 function actualInsertionSort(data){
     // we are sorted till index 0, so starting at i =1
     for(let i = 1; i < data.length; i++){
@@ -77,7 +78,7 @@ function actualInsertionSort(data){
          hole  = i
 
          // hole can travel to the position 0 && hole should travel 
-        //  element @ index hole-1 is greater than value we shift the element @ index [hole -1] to the hole, so our new index hole = hole -1 
+        //  if element @ index hole-1 is greater than value @ current hole we shift the element @ index [hole -1] to the hole, so our new  hole index = hole -1 
          // we need to shift all the value greater then the value to be inserted to the right by 1
          while(hole > 0 && data[ hole -1] > value ){
             // inital hole is filled by greater value in sorted subset
@@ -96,7 +97,7 @@ function insert(data){
         let value = data[i],
         hole = i
 
-        while(hole > 0 && data[hole -1] > data[hole]){
+        while(hole > 0 && data[hole -1] > value){
             data[hole] = data[hole -1]
             hole = hole - 1
         }
@@ -105,4 +106,6 @@ function insert(data){
     return data
 }
 
-console.log(insert(numbers))
+const numbers2 = [10, 2, 5, 1, 8]
+console.log(actualInsertionSort(numbers2))
+console.log('insertion sort => ', [10, 2, 5, 1, 8], insert([10, 2, 5, 1, 8]))

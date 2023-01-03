@@ -274,3 +274,32 @@ refactoredBFS = (matrix) => {
 console.log(traversalBFS(data))
 console.log(learnedBFS(data))
 console.log(refactoredBFS(data))
+
+function learningBFS(matrix){
+    const
+     queue = [], result = [],
+     seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false))
+
+
+    queue.push([0,0])
+
+
+
+    while(queue.length > 0){
+        // if value is out of bound or seen is true we continue i.e skip
+
+        let [row, col] = queue.shift()
+        if(!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]){
+            continue
+        }
+
+        seen[row][col] = true
+        result.push(matrix[row][col])
+        for(let dir of direction){
+            queue.push([row + dir[0] , col + dir[1]])
+        }
+    }
+    return result
+}
+
+console.log('learningBFS', learningBFS(data))

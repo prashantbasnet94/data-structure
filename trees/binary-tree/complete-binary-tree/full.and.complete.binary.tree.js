@@ -201,7 +201,7 @@ we know how to calculate number of nodes in first section, how do we calculate n
 Couple of hints:
 1. For all the nodes that could be in second secton or leaf nodes, they must be pushed to the very left. 
     Meaning that if you are able to find the rightmost node at this level, you can assume that all the nodes to the left exist
-    Which means, if you are able to figure out what number from left to right this node is , you can immediatly tell how many nodes are in this level
+    Which means, if you are able to figure out what number from left to right is , you can immediatly tell how many nodes are in this level
 2. The trick is figuring out that this is the right node to look for
 3. We need to do this logN time, what search can we perfom in log N time? binary search. How do we perform the binary search here?
 
