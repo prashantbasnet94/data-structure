@@ -7,6 +7,44 @@ minCost(1) = cost[1]
 i < 0 = return 0
 
 
+
+
+
+
+
+
+            0    1  2   3   4
+    cost = [20  15  30  5]
+
+
+    minCost to reach @ 4 = minCost of(2, 3)
+
+                            minCost(n)
+                        /               \
+                    minCost(n-1)        minCost(n-2)
+
+                    do we want both of them?
+                    we want the min between these two values
+
+                    what is minCost(index = 2)?
+
+
+
+
+
+
+
+                                 minCost(n)
+                        /                        \
+                Min(minCost(n-1)                minCost(n-2))           + cost(n)
+                  /             \                     /       \
+        Min(minCost(n-2), minCost(n-3))  + cost(n - 1)       (minCost(n-3), minCost(n-4))  + cost(n-2)            
+
+
+        Note that,
+        minCost of reaching these steps includes the cost of the step iteself.
+
+        recurrence realtion Math.min(minCost(n-1), minCost(n - 2)) + cost(n)
 */
 
 const cost = [20, 15, 30, 5],
@@ -20,8 +58,6 @@ minCostClimbingStairs = (cost) => {
     return Math.min(minCost(n-1, cost), minCost(n-2, cost))
 },
 minCost = (i, cost) => {
-    count += 1
-
     if(i < 0) return 0
     if(i === 0 || i ===1 )return cost[i]
 
@@ -102,7 +138,6 @@ minCostClimbingStairs2 = (cost) => {
 },
 minCost2 = (i, cost, memory) => {
 
-    count2 +=1
     if(i < 0) return 0
     if(i === 0 || i ===1 )return cost[i]
 

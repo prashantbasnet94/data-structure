@@ -18,7 +18,7 @@ sliding window technique
 
     let
         leftPointer = 0, //buy
-        rightPointer = 1, //sell
+        rightPointer = 0, //sell
         maxProfit = 0
 
     while (rightPointer < prices.length) {
@@ -31,7 +31,7 @@ sliding window technique
             // if not a profitable transaction
             // wait till the lowest day
             // if we find the lowest price day than we buy @ that day
-            leftPointer = r
+            leftPointer = rightPointer
         }
 
         rightPointer++

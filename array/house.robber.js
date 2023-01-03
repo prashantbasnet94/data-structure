@@ -134,3 +134,9 @@ console.log(dynamicProgramming([2, 1, 1, 2]))
 
 
 
+dp[0] = nums[0]
+dp[1] = nums[1]
+dp[2] = dp[0] + nums[2]
+dp[3] = Math.max(dp[3 - 2], dp[3 -3])  + cost[3]
+
+

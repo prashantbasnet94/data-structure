@@ -127,8 +127,6 @@ dp  [9  9  9  9 ... 9] of length 9 + 1, as index starts from 0
                 }
             }          
         }
- 
-console.table(dp)
 return dp[total]
 }
 
