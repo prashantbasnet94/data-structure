@@ -210,7 +210,22 @@ function decodeWaysRefactored(s){
      }
      return dfs(0)
 }
+/*
 
+                                    0 1 2 3    
+                                    1 1 1 6
+                                    
+                                i = 3, s[i] = 6
+                                
+                                1 1 1 6
+                                0 1 2 3     
+                         dp =  [5 3 2 1 ]       
+
+
+
+
+
+*/
 function iterativeApproach(input){
     const dp = {[input.length] : 1}
 
