@@ -1,11 +1,11 @@
-function isSameTree(root, subTreeRoot){
+function isSubtree(root, subTreeRoot){
     if(!root)return false
     if(isSubTree(root, subTreeRoot))return true
-    return isSameTree(root.left, subTreeRoot) || isSameTree(root.right, subTreeRoot)
+    return isSubtree(root.left, subTreeRoot) || isSubtree(root.right, subTreeRoot)
 }
 
-function isSubTree(a, b){
+function isSameTree(a, b){
     if(!a && !b) return true
     if(!a || !b || a.val !== b.val) return false
-    return isSubTree(a.left, b.left) && isSubTree(a.right, b.right)
+    return isSameTree(a.left, b.left) && isSameTree(a.right, b.right)
 }
