@@ -55,34 +55,34 @@ Approach:
 
  */
 
-class Node{
-    constructor(value){
+class Node {
+    constructor(value) {
         this.left = null
         this.right = null
         this.value = value
     }
 }
 
-class BinaryTree{
-    constructor(){
+class BinaryTree {
+    constructor() {
         this.root = null
     }
 
-    insert(value){
+    insert(value) {
         let node = new Node(value),
-        currentNode = this.root
-        if(!this.root){
+            currentNode = this.root
+        if (!this.root) {
             this.root = node
-        }else{
-            while(currentNode){
-                if(currentNode.value < value){
-                    if(!currentNode.right){
+        } else {
+            while (currentNode) {
+                if (currentNode.value < value) {
+                    if (!currentNode.right) {
                         currentNode.right = node
                         return currentNode.right
                     }
                     currentNode = currentNode.right
-                }else{
-                    if(!currentNode.left){
+                } else {
+                    if (!currentNode.left) {
                         currentNode.left = node
                         return currentNode.left
                     }
@@ -92,20 +92,20 @@ class BinaryTree{
         }
         return tree
     }
-    levelOrderTraversal(tree){
-/*
-         using bfs
-         we use a queue to record the child of current level travesing node
-        
-                      9                          [9]
-                4         20                    [4,20]
-            1       6   15      170             [1,6,15,170]
- */
-        let currentNode  = tree.root,
+    levelOrderTraversal(tree) {
+        /*
+                 using bfs
+                 we use a queue to record the child of current level travesing node
+                
+                              9                          [9]
+                        4         20                    [4,20]
+                    1       6   15      170             [1,6,15,170]
+         */
+        let currentNode = tree.root,
             queue = [currentNode],
             list = []
         while (queue.length > 0) {
-            let 
+            let
                 queuesize = queue.length,
                 count = 0,
                 levelOrder = []
