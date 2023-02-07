@@ -187,119 +187,153 @@ const direction = [
     [1, 0], // down
     [0, -1] // left
 ],
-data = [     
-    [ 1, 2, 3, 4, 5 ],
-    [ 6, 7, 8, 9, 10],
-    [11, 12, 13, 14, 15],
-    [16, 17, 18, 19, 20],
-],
-inBound = (value, min, max) => value > min && value < max
+    data = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 8, 9, 10],
+        [11, 12, 13, 14, 15],
+        [16, 17, 18, 19, 20],
+    ],
+    inBound = (value, min, max) => value > min && value < max
 const traversalBFS = (matrix) => {
-     let 
+    let
         seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false)),
         queue = [], result = []
-        queue.push([0, 0])
-
-        while(queue.length > 0){
-            let [row, col] = queue && queue.shift(),
-            tempRow = row, tempCol = col
-            if(!seen[row][col]){
-                result.push(matrix[row][col])
-            }
-            for(let i =0; i < direction.length; i++){
-                let currDir = direction[i]
-                row +=  currDir[0]
-                col +=  currDir[1]
-                if(inBound(row, -1, matrix.length) && inBound(col, -1, matrix[0].length) && !seen[row][col]){
-                    queue.push([row, col])
-                }
-                row = tempRow
-                col = tempCol
-            }
-            seen[row][col] = true
-        }
-        return result
-
-},
-learnedBFS = (matrix) => {
-    let 
-    seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false)),
-    queue = [], result = []
     queue.push([0, 0])
 
-    while(queue.length > 0){
-        const 
-            currPosition = queue.shift(),
-            [row, col] = currPosition
-
-        if(!inBound(row,-1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]){
-            continue
+    while (queue.length > 0) {
+        let [row, col] = queue && queue.shift(),
+            tempRow = row, tempCol = col
+        if (!seen[row][col]) {
+            result.push(matrix[row][col])
+        }
+        for (let i = 0; i < direction.length; i++) {
+            let currDir = direction[i]
+            row += currDir[0]
+            col += currDir[1]
+            if (inBound(row, -1, matrix.length) && inBound(col, -1, matrix[0].length) && !seen[row][col]) {
+                queue.push([row, col])
+            }
+            row = tempRow
+            col = tempCol
         }
         seen[row][col] = true
-        result.push(matrix[row][col])
-        // done processing
-        // now just push up right down left immidate vicinities coordinates into queue
-
-        for(let i =0; i< direction.length; i++){
-            const currDir = direction[i]
-            queue.push([row+currDir[0], col + currDir[1]])
-        }
     }
-
     return result
 
 },
-refactoredBFS = (matrix) => {
-    let 
-       seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false)),
-       queue = [], result = []
-       queue.push([0, 0])
+    learnedBFS = (matrix) => {
+        let
+            seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false)),
+            queue = [], result = []
+        queue.push([0, 0])
 
-       while(queue.length > 0){
-           let [row, col] = queue.shift()
-           if(!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]){
-            continue 
-           }
-           seen[row][col] = true
-           result.push(matrix[row][col])
+        while (queue.length > 0) {
+            const
+                currPosition = queue.shift(),
+                [row, col] = currPosition
 
-           for(let i =0; i < direction.length; i++){
-               let currDir = direction[i]
-                queue.push([row+ currDir[0], col + currDir[1]])
-           }
-       }
-       return result
+            if (!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]) {
+                continue
+            }
+            seen[row][col] = true
+            result.push(matrix[row][col])
+            // done processing
+            // now just push up right down left immidate vicinities coordinates into queue
 
-}
+            for (let i = 0; i < direction.length; i++) {
+                const currDir = direction[i]
+                queue.push([row + currDir[0], col + currDir[1]])
+            }
+        }
+
+        return result
+
+    },
+    refactoredBFS = (matrix) => {
+        let
+            seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false)),
+            queue = [], result = []
+        queue.push([0, 0])
+
+        while (queue.length > 0) {
+            let [row, col] = queue.shift()
+            if (!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]) {
+                continue
+            }
+            seen[row][col] = true
+            result.push(matrix[row][col])
+
+            for (let i = 0; i < direction.length; i++) {
+                let currDir = direction[i]
+                queue.push([row + currDir[0], col + currDir[1]])
+            }
+        }
+        return result
+
+    }
 console.log(traversalBFS(data))
 console.log(learnedBFS(data))
 console.log(refactoredBFS(data))
 
-function learningBFS(matrix){
+function learningBFS(matrix) {
     const
-     queue = [], result = [],
-     seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false))
-
-
-    queue.push([0,0])
-
-
-
-    while(queue.length > 0){
+        queue = [], result = [],
+        seen = new Array(matrix.length).fill(0).map(o => new Array(matrix[0].length).fill(false))
+    queue.push([0, 0])
+    while (queue.length > 0) {
         // if value is out of bound or seen is true we continue i.e skip
 
         let [row, col] = queue.shift()
-        if(!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]){
+        if (!inBound(row, -1, matrix.length) || !inBound(col, -1, matrix[0].length) || seen[row][col]) {
             continue
         }
 
         seen[row][col] = true
         result.push(matrix[row][col])
-        for(let dir of direction){
-            queue.push([row + dir[0] , col + dir[1]])
+        for (let dir of direction) {
+            queue.push([row + dir[0], col + dir[1]])
         }
     }
     return result
 }
 
-console.log('learningBFS', learningBFS(data))
+// console.log('learningBFS', learningBFS(data))
+
+function bfs(row, col, board, word, at) {
+    const
+        queue = [],
+        directions = [
+            [-1, 0], //top
+            [0, 1], //right
+            [1, 0], //down
+            [0, -1], //left
+        ],
+        inbound = (value, max) => -1 < value && value < max,
+        result = [],
+        seen = new Array(board.length).fill(0).map(o => new Array(board[0].length).fill(false))
+
+    queue.push([row, col])
+    while (queue.length > 0) {
+
+        let [row, col] = queue.shift()
+        if (!inbound(row, board.length) || !inbound(col, board[0].length) || seen[row][col]) {
+            continue
+        }
+        seen[row][col] = true
+        result.push(board[row][col])
+        for (let dir of directions) {
+            let
+                [newrow, newcol] = dir,
+                rowdir = row + newrow,
+                coldir = col + newcol
+
+            console.log( board[newrow])
+            if (at < word.length && board[newrow] &&  board[newrow][newcol] === word.charAt(at + 1)) {
+                queue.push([rowdir, coldir])
+            }
+        }
+        at += 1
+    }
+    return result
+}
+
