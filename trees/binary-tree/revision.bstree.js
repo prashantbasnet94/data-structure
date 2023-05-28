@@ -65,7 +65,7 @@ class BinarySearch{
         parent = currentNode
 
         while (true) {
-            if (currentNode.value > value) {
+            if (value < currentNode.value ) {
                 // go left
                 parent = currentNode
                 currentNode = currentNode.left
@@ -179,3 +179,48 @@ console.log(bs.remove(15))
 console.log(bs.root)
 
 
+/*
+
+Binary Tree:
+
+1. Insert
+
+    while(true){
+        if(value < currentNodeVal){
+            go left
+            if(currentNode is null){
+                createANode
+                return true
+            }else{
+                keep going left
+            }
+        }else{
+            go right
+            if(currentNode is null){
+                createANode
+                return true
+            }else{
+                keep going right
+            }
+        }
+    }
+2. LookUp
+        while(true){
+            if(value < currNodeVal){
+                go left
+            }else if(value > currNodeVal){
+                go right
+            }else{
+                return true
+            }
+        }
+3. Remove
+
+
+
+
+*/
+
+function insert(){
+
+}

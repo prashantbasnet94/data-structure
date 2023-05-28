@@ -84,7 +84,7 @@ In a graph each item is called node or vertex. Nodes are then connected with edg
             /    \
            /      \
          (1) ------(3)    
-    Let we want to build this graph. How would we go about doing this?
+    Let's say we want to build this graph. How would we go about doing this?
           
 
 
@@ -105,6 +105,11 @@ const graph = [[0,2],[2,3],[2,1],[1,3]]
 
 
 /*
+              (2) ---------(0)
+            /    \
+           /      \
+         (1) ------(3)    
+         
 2. Adjacent List:
             index => the node 
             value => node's neighbour || index node is connected to these node

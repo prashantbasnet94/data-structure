@@ -57,7 +57,6 @@ function binarySearchLooping(array, target) {
         }
     }
     return  -1
-
 }
 function binarySearchRecursive(sortedData, target, left = 0, right = sortedData.length - 1) {
     let

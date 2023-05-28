@@ -15,7 +15,7 @@
           n + 1 => reverseEndNode = 7
 
 
- 
+
 */
 
 
@@ -56,7 +56,6 @@ function mnReversal(head, m, n) {
     }
 
 }
-
 
 let linkedList = {
     value: 1,

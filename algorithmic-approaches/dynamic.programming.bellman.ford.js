@@ -45,7 +45,7 @@ and then choosing the one with the lowest weight.
 That;s the only way you can be guarenteed that the path that you have has indeed the lowest weight
 
 
-Inorder to find the shortest path greedy travels to all the possible path and then decides which is shortest path:
+Inorder to find the shortest path this algo travels to all the possible path and then decides which is shortest path:
 
 1: S-A-C-E => 9
 2: S-A-C-D-E => 22

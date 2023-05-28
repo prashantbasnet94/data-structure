@@ -44,6 +44,7 @@ class QueueWithStacks{
     
 }
 
+
 /*
 
 insights:
@@ -51,6 +52,12 @@ insights:
 1. stack = [1,2,3] ====>  Last in first out LIFO
 2. queue = [1,2,3] ====>  First In first Out FIFO
 
+
+if(this.out.length === 0){
+    while(this.in.length !== 0) {{
+        this.out.push(this.in.pop())
+    }
+}
 
 ##### Insert
 
@@ -82,6 +89,7 @@ so, how do we achive same functionality on queue using stack
           since dequeue removes the element [1,2,3,4] => [2,3,4]
 
         if this.out is empty, get this.in and set it in reverse order 
+         [in]           [out]
         [1,2,3,4 ] => [4,3,2,1]
             i.e if(this.out.length === 0){
                 while(this.in.length !==0){

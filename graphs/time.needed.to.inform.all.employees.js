@@ -34,7 +34,7 @@ Here all index are employees, where value at that index is the manager
 so know we are looking to build that subordination realtionship as a tree structure
 
 
-Nots:
+Notes:
 All trees are graphs just with kind of specifc rules
 
 And so far we have only worked with the binary trees.
@@ -104,7 +104,7 @@ some has 1,
 some has 2 branch
 some can even have 10, 15 , or ever 100 branches.
 
-Idea is the moment you notice it's N-arry tree, most likely it's going to be graph question
+Idea is, the moment you notice it's N-arry tree, most likely it's going to be graph question
 
 
 The head of the company wants to inform all employees of news. He will inform his direct subordinates who will inform their direct subordinates and so on
@@ -236,7 +236,7 @@ We need to figure this out, when we solve the problem.
 
 4. Is it directed graph?
 -----------------------
-Becuasaes it's a gree, it is directed
+Becuasaes it's a tree, it is directed
 
 
 
@@ -280,7 +280,7 @@ Here' value is the manager and index is the subordinate employee that manager ha
 
 ManagerArray:
 
-  0, 1, 2, 3,  4, 5, 6, 7 , index => emplopyee under manager
+  0, 1, 2, 3,  4, 5, 6, 7 , index => emplopyee under manager
 [ 2, 2, 4, 6, -1, 4, 4, 5], value => manager 
 
 for example in our ajacencyList
@@ -307,53 +307,53 @@ This is the adjacency list, using this adjaceny list, let's determine the total 
 
 */
 
-const 
-    manager = [ 2, 2, 4, 6, -1, 4, 4, 5],
-    infromTime = [0, 0, 4, 0, 7, 3, 6, 0],
-    headId = 4,
-    n = 8
+const
+  manager = [2, 2, 4, 6, -1, 4, 4, 5],
+  infromTime = [0, 0, 4, 0, 7, 3, 6, 0],
+  headId = 4,
+  n = 8
 
-function buildGraph(managers, headId, n, informTimes){
+function buildGraph(managers, headId, n, informTimes) {
   //o(N)
-    let adjacencyList = managers.map( o => [])
+  let adjacencyList = managers.map(o => [])
   //o(N)
-    for(let emplopyee in managers){
-        let manager = managers[emplopyee]
-        if(manager === -1) continue
-        adjacencyList[manager].push(emplopyee)
-    }
+  for (let emplopyee in managers) {
+    let manager = managers[emplopyee]
+    if (manager === -1) continue
+    adjacencyList[manager].push(emplopyee)
+  }
   //o(N)
-    return dfsrefactored(adjacencyList, headId,infromTime)
+  return dfsrefactored(adjacencyList, headId, infromTime)
 }
 
- let finalResult =  buildGraph(manager, headId, n, infromTime)
+let finalResult = buildGraph(manager, headId, n, infromTime)
 
 
-function dfs(matrix, vertex, seen, values){
+function dfs(matrix, vertex, seen, values) {
 
- 
+
   values.push(vertex)
   seen[vertex] = true
 
   let connections = matrix[vertex]
 
-  for (let i = 0; i < connections.length; i++){
+  for (let i = 0; i < connections.length; i++) {
     let connection = connections[i]
-    if(!seen[connection]){
+    if (!seen[connection]) {
       dfs(matrix, connection, seen, values)
     }
   }
-  
+
 }
 
 
-function dfsrefactored(adjacencyList, currentId, informTime){
+function dfsrefactored(adjacencyList, currentId, informTime) {
 
-  if(adjacencyList[currentId].length === 0) return 0
+  if (adjacencyList[currentId].length === 0) return 0
 
-  let 
-  max = 0,
-  subordiantes = adjacencyList[currentId]
+  let
+    max = 0,
+    subordiantes = adjacencyList[currentId]
 
 
   for (let i = 0; i < subordiantes.length; i++) {
@@ -363,10 +363,10 @@ function dfsrefactored(adjacencyList, currentId, informTime){
     // tell its subordinates the news
     max = Math.max(max, dfsrefactored(adjacencyList, subordinate, informTime))
   }
-// once this for loop is done, we can be certain that our max value is updated to the max value between all of the subordinates that this currentId has
-// so now i can finally return my second base case
+  // once this for loop is done, we can be certain that our max value is updated to the max value between all of the subordinates that this currentId has
+  // so now i can finally return my second base case
 
-return max + informTime[currentId]
+  return max + informTime[currentId]
 
 }
 

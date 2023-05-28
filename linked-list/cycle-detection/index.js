@@ -58,3 +58,82 @@ myrefactored = head => {
     }
     return start
 }
+
+
+function hareAndTortoise(head){
+    let hare = head, tortoise = head
+
+
+    while(true){
+        if(hare && hare.next === null){
+            return false
+        }
+        hare = hare.next
+        tortoise = tortoise.next
+
+        if(hare && hare.next === null){
+            return false
+        }
+        hare = hare.next
+        if(hare === tortoise){
+            return true
+        }
+    }
+}
+
+
+function detectingCycleStart(head){
+
+    if(head === null) return false
+    let
+     hare = head,
+     tortoise = head
+    
+    while(true){
+        if(hare && hare.next === null)return false
+        hare = hare.next
+        tortoise = tortoise.next
+        if(hare && hare.next === null)return false
+        hare = hare.next
+        if(hare === tortoise) break
+    }
+
+    let start = head, meet = tortoise
+
+    while(start !== meet){
+        start = start.next
+        meet = meet.next
+    }
+    return start
+}
+
+
+function detectingCycleAndFindingCycleLength(head){
+    if(!head)return null
+    
+    let
+     hare = head,
+     tortoise = head
+
+    while(true){
+        if(hare && hare.next === null)return false
+        hare = hare.next
+        tortoise = tortoise.next
+        if(hare & hare.next === null) return false
+        hare = hare.next
+
+        if(hare === tortoise)break
+    }
+
+    let
+     cycleLength = 0,
+     movingPointer = hare,
+     meet = hare
+
+     do{
+        movingPointer = movingPointer.next
+        cycleLength++
+     }while(movingPointer !== tor)
+
+     return cycleLength
+}

@@ -80,7 +80,8 @@ refactored = (head) => {
             if(currentNode.child === null){
                 currentNode = next
             }else {
-                // if child is found, we need currentNode.next = child, child.prev = currenNode, childNodeListTail.next = curretNode.next and curentNode.next.prev = childNodeListTail
+                // if child is found, we need currentNode.next = child, child.prev = currenNode, 
+                //childNodeListTail.next = curretNode.next and curentNode.next.prev = childNodeListTail
                // and set currentNode.child to null
                 let 
                     tail = currentNode.child

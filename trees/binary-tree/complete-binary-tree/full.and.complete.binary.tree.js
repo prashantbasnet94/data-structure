@@ -277,7 +277,7 @@ Howerver, we don;t know that this node i.e node at index 4 is the right most nod
 The right most node could exist on the right side, but also scould be this value like in this example
 
 Note:
-    if the value exist left = midVlaue
+    if the value exist, left = midVlaue
     if the value doesnot exist, right = mid -1
 
 For this reason, we need to shift the left equal to the mid value

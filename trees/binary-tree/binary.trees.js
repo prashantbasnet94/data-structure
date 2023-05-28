@@ -76,7 +76,7 @@ function BinaryTreeNode (value){
            3 : 3^2 = 8
            
     # of nodes = 2^h -1 
-    log nodes = steps
+    log of nodes = steps
 
     log n simply means, based on the height the max number of decision we are going to take is log(N), that means
 

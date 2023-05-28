@@ -76,6 +76,7 @@ Three ways to do Depth First Search:
     1       6   15      170
 
 1. Inorder: GO DOWN ONE DIRECTION WHEN IT HITS NULL COMEBACK AND GRAB IT
+            Visit left most hit null and comeback and grab left most and go 1 step 
     W
     case1 : [33,101,105]
     case2 : [1,4,6,9,15,20,170] 

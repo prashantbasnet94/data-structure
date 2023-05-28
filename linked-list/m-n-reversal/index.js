@@ -19,30 +19,30 @@ prevBuild = 5 => 4 => 3
 
 
 const mnReversal = (head, m, n) => {
-    let 
-    headNode = head,
-    currentPosition = 1,
-    currNode = head,
-    startBefore,
-    start,
-    endAfter,
-    end,
-    prevBuild,
-    tailOfReversedList 
+    let
+        headNode = head,
+        currentPosition = 1,
+        currNode = head,
+        startBefore,
+        start,
+        endAfter,
+        end,
+        prevBuild,
+        tailOfReversedList
 
-    while(head){
-        
-        if(currentPosition === m -1){
+    while (head) {
+
+        if (currentPosition === m - 1) {
             //store the start of 3 i.e 2
             startBefore = currNode
         }
-        if(currentPosition ===m){
+        if (currentPosition === m) {
             tailOfReversedList = currNode
         }
-        if(currentPosition >= m && currentPosition <= n){
+        if (currentPosition >= m && currentPosition <= n) {
             //reverese in between list
             let next, currNode2 = currNode
-            while(currNode2){
+            while (currNode2) {
                 next = currNode2.next
                 currNode2.next = prevBuild
                 prevBuild = currNode2
@@ -56,98 +56,98 @@ const mnReversal = (head, m, n) => {
         currentPosition++
     }
 },
- mnReversal2 = (head, m, n) => {
-    /*
-1 => 2 => 3 => 4 => 5 => 6 => 7
+    mnReversal2 = (head, m, n) => {
+        /*
+    1 => 2 => 3 => 4 => 5 => 6 => 7
+    
+    m = 3, n = 5
+    
+        */
+        let
+            currentPosition = 1,
+            currNode = head,
+            start = head
 
-m = 3, n = 5
+        while (currentPosition < m) {
+            start = currNode
+            currNode = currNode.next
+            currentPosition++
+        }
 
-    */
-    let 
-    currentPosition = 1,
-    currNode = head,
-    start = head
+        let newList = null, tail = currNode, next
+        while (currentPosition <= n && currentPosition >= m) {
+            next = currNode.next
+            currNode.next = newList
+            newList = currNode
+            currNode = next
+            currentPosition++
+        }
 
-    while(currentPosition < m){
-        start = currNode
-        currNode = currNode.next
-        currentPosition++
+        start.next = newList
+        tail.next = currNode
+        if (m > 1) {
+            return head
+        } else {
+            return newList
+        }
+    },
+    mnreversal3 = (head, m, n) => {
+        let currentPosition = 1,
+            start = head,
+            currNode = head
+
+        while (currentPosition < m) {
+            start = head
+            currNode = currNode.next
+            currentPosition++
+        }
+        let reversedList = null,
+            tailOfReversedList = currNode
+
+        /*
+        1 => 2 => (3) => 4 => 5 => 6 => 7
+        m = 3, n = 6
+        
+        1 => 2 => 6 => 5 => 4 => 3 => 7
+        
+        next  => 4, 5, 6
+        currNode.next => 4, null, 4,
+        reversedlist => null, 4, 5
+        currNode => 4, 5
+        currPosition => 5
+        
+        
+        
+        
+        next  => 4, 5
+        currNode.next => 4 => null   5 => 3 => null
+        newList => null, 3 => null, 4 => 3 => null, 5 => 4 => 3 => null
+        currNode => 4
+        currPosition => 4
+        
+        */
+
+
+
+        while (currentPosition <= n && currentPosition >= m) {
+            const next = currNode.next
+            currNode.next = reversedList
+            reversedList = currNode.next
+            currNode = next
+            currentPosition++
+        }
+        // 1=> 2 => 3 => 4 => 5 => 6
+
+        // 1 => 2 => 5 => 4 => 3 => 6
+        start.next = reversedList
+        tailOfReversedList.next = currNode
+
+        if (m > 1) {
+            return head
+        } else {
+            return reversedList
+        }
     }
-
-    let newList = null, tail = currNode, next
-    while(currentPosition <= n && currentPosition >=m){
-      next = currNode.next
-      currNode.next = newList
-      newList = currNode
-      currNode = next
-      currentPosition++
-    }
-
-    start.next = newList
-    tail.next = currNode
-    if(m > 1){
-        return head
-    }else{
-        return newList
-    }
-},
-mnreversal3 = (head, m, n) => {
-    let currentPosition = 1,
-    start = head,
-    currNode = head
-
-    while(currentPosition < m){
-        start = head
-        currNode = currNode.next
-        currentPosition++
-    }
-    let reversedList= null,
-    tailOfReversedList = currNode
-
-/*
-1 => 2 => (3) => 4 => 5 => 6 => 7
-m = 3, n = 6
-
-1 => 2 => 6 => 5 => 4 => 3 => 7
-
-next  => 4, 5, 6
-currNode.next => 4, null, 4,
-reversedlist => null, 4, 5
-currNode => 4, 5
-currPosition => 5
-
-
-
-
-next  => 4, 5
-currNode.next => 4 => null   5 => 3 => null
-newList => null, 3 => null, 4 => 3 => null, 5 => 4 => 3 => null
-currNode => 4
-currPosition => 4
-
-*/
-
-
-
-    while(currentPosition <= n && currentPosition >=m){
-        const next = currNode.next
-        currNode.next = reversedList
-        reversedList = currNode.next
-        currNode = next
-        currentPosition++
-    }
-  // 1=> 2 => 3 => 4 => 5 => 6
-
-  // 1 => 2 => 5 => 4 => 3 => 6
-    start.next = reversedList
-    tailOfReversedList.next = currNode
-
-    if(m > 1 ){
-        return head
-    }else{
-        return reversedList
-    }
-}
 
 let linkedList = {
     value: 1,
@@ -171,4 +171,4 @@ let linkedList = {
         }
     }
 }
-console.log(mnreversal3(linkedList, 3,6))
+console.log(mnReversal2(linkedList, 3, 6))

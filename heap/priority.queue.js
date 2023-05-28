@@ -1,5 +1,3 @@
-const { node } = require('prop-types')
-
 /*
 How does a priority queue relate to the Heap?
 
