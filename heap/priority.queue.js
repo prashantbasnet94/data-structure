@@ -134,6 +134,26 @@ class PriorityQueue{
     }
 }
 
+
+/*
+  shiftUp || sortUp
+
+  1. get the currentElementIndex i.e this.size() -1
+  2. when currentElementIndex > 0 && currentElment > it's parent enter into whileLoop to shift the value up{
+        a. swap(currentElementIndex, parentElementIndex)
+        b. currentElementIndex = parementElementIndex
+      }
+*/
+
+_sortUp(){
+  let curElemIndx = this.size() - 1
+  while( curElemIndx > 0 && this.compare(curElemIndx , this._parent(curElemIndx))){
+    this._swap(curElemIndx, this._parent(curElemIndx))
+    curElemIndx = this._parent(curElemIndx)
+  }
+}
+
+
 _shiftDown(){
 
   /*
@@ -145,6 +165,11 @@ _shiftDown(){
     this._swap(greaterChildIndx, nodeIndex)
     nodeIndex = greaterChildIndx
   }
+
+  In the while loop, the condition checks whether either child exists and whether that child is greater than the current node. Specifically, it checks two conditions with the || operator:
+
+this._leftChild(nodeIndex) < this.size() && this._compare(this._leftChild(nodeIndex), nodeIndex) - This condition checks if the left child exists and if it is greater than the current node.
+this._rightChild(nodeIndex) < this.size() && this._compare(this._rightChild(nodeIndex), nodeIndex) - This condition checks if the right child exists and if it is greater than the current node.
 
   */
  let nodeIndex = 0

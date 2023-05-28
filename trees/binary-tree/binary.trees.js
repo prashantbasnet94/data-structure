@@ -194,12 +194,12 @@ console.log(findMaxDepth(tree))
 
 }*/
 // --------- FIND MAX DEPTH ---------------
-function myMaxDepth(tree, maxDepth = 1){
+function myMaxDepth(tree){
     if(!tree){
-        return maxDepth
+        return 0
     }
     maxDepth++
-    return Math.max(myMaxDepth(tree.left,maxDepth), myMaxDepth(tree.right, maxDepth))
+    return Math.max(myMaxDepth(tree.left), myMaxDepth(tree.right)) + 1
 }
 
 function findMaxDepth2(tree){

@@ -23,46 +23,46 @@
 
 
 
-function recursive(name, nameLength, finalBranch){
-    if(nameLength === 0) {
-       return finalBranch
+function recursive(name, nameLength, finalBranch) {
+    if (nameLength === 0) {
+        return finalBranch
     }
-   let newResult = {}
-   if(name.length - 1 === nameLength){
-      newResult[[name[nameLength]]] =  {isEnd: true}
-   } else {
-       newResult[[name[nameLength]]] =  finalBranch
-   }
-   return recursive(name, nameLength -1 , newResult)
- }
- 
-class Trie{
-    constructor(){
+    let newResult = {}
+    if (name.length - 1 === nameLength) {
+        newResult[[name[nameLength]]] = { isEnd: true }
+    } else {
+        newResult[[name[nameLength]]] = finalBranch
+    }
+    return recursive(name, nameLength - 1, newResult)
+}
+
+class Trie {
+    constructor() {
         this._root = {}
     }
-    insert(word){
+    insert(word) {
         //apple
-          let branch = this._root[word[0]]
-         
-          if(!branch){
-            this._root[word[0]] = recursive(word, word.length -1, {})
-          }else{
-            for(let i = 1; i < word.length; i++){
+        let branch = this._root[word[0]]
+
+        if (!branch) {
+            this._root[word[0]] = recursive(word, word.length - 1, {})
+        } else {
+            for (let i = 1; i < word.length; i++) {
                 let subBranch = branch[word[i]]
-                if(!subBranch){
-                    branch[word[i]] = recursive(word, word.length -1 ,{})
-                }else{
+                if (!subBranch) {
+                    branch[word[i]] = recursive(word, word.length - 1, {})
+                } else {
                     branch = subBranch
-                    if(i === word.length -1){
+                    if (i === word.length - 1) {
                         branch.isEnd = true
                     }
                 }
             }
-          }
-       return true
-     }
+        }
+        return true
+    }
 
-    search(word){
+    search(word) {
         console.log('searching word', word)
         /*  
             search(zebra)
@@ -75,29 +75,29 @@ class Trie{
             if not found in level 1, i.e this._root[char] === undefined, return false
             if a char is matched @ first level go down that level further
         */
-             let branch = this._root[word[0]] 
-            if(!branch)return false
+        let branch = this._root[word[0]]
+        if (!branch) return false
 
-            for(let index = 0 ; index< word.length; index++){
+        for (let index = 0; index < word.length; index++) {
 
-                if(index === 0) continue
-                let subBranch = branch[word[index]]
-                if(!subBranch)return false
-                branch = subBranch
-            }
-             return branch && branch.isEnd || false
+            if (index === 0) continue
+            let subBranch = branch[word[index]]
+            if (!subBranch) return false
+            branch = subBranch
+        }
+        return branch && branch.isEnd || false
     }
 
-    startsWith(prefix){
+    startsWith(prefix) {
         console.log('checking for prefix ', prefix)
         // check in th root for the path prefix and return true if all the prefix already exist
 
         let branch = this._root[prefix[0]]
-        if(!branch) return false
+        if (!branch) return false
 
-        for(let i = 1; i < prefix.length ; i++){
+        for (let i = 1; i < prefix.length; i++) {
             let subBranch = branch[prefix[i]]
-            if(!subBranch) return false
+            if (!subBranch) return false
             subBranch = branch
         }
         return true
@@ -118,7 +118,7 @@ class Trie{
 // console.log(trie.search('app'))
 // console.log(trie._root)
 
- 
+
 
 // {
 //     a:{
@@ -137,48 +137,48 @@ class Trie{
 
 
 
- // *************** refactor *******************************
+// *************** refactor *******************************
 
- function Trie2(){
+function Trie2() {
     return {
         end: false,
         keys: {}
     }
- }
+}
 
- class Trie3{
-    constructor(){
+class Trie3 {
+    constructor() {
         this.root = Trie2()
     }
-    insert(word){
+    insert(word) {
         // if first word exist then go down that path
         // if not create a key 
-        let currNode =this.root
-        for( let i = 0; i < word.length; i++){
-            if(!currNode.keys[word[i]]){
+        let currNode = this.root
+        for (let i = 0; i < word.length; i++) {
+            if (!currNode.keys[word[i]]) {
                 currNode.keys[word[i]] = Trie2()
             }
             currNode = currNode.keys[word[i]]
-            if(i === word.length -1 ){
+            if (i === word.length - 1) {
                 currNode.end = true
             }
         }
         return this.root.keys
     }
 
-    insertRecursive(word, node = this.root){
-        if(word.length === 0){
+    insertRecursive(word, node = this.root) {
+        if (word.length === 0) {
             node.end = true
             return
         }
         // think about different condition in whihc we are inserting characters into ta specific trie node
         // check if the key does not exist
-        else if(!node.keys[word[0]]){
+        else if (!node.keys[word[0]]) {
             node.keys[word[0]] = Trie2()
             this.insertRecursive(word.substring(1), node.keys[word[0]])
         }
         // if key exist 
-        else{
+        else {
             this.insertRecursive(word.substring(1), node.keys[word[0]])
         }
 
@@ -186,47 +186,47 @@ class Trie{
 
     }
 
-    search(word){
+    search(word) {
         let currNode = this.root
 
-        for(let i = 0; i< word.length; i++){
+        for (let i = 0; i < word.length; i++) {
             currNode = currNode.keys[word[i]]
-            if(!currNode) return false
+            if (!currNode) return false
         }
         return currNode.end || false
     }
 
-    searchRecursive(word, currNode = this.root){
-        if(word.length === 0 ){
+    searchRecursive(word, currNode = this.root) {
+        if (word.length === 0) {
             return node.end
-        }else if(!currNode.keys[word[0]]){
+        } else if (!currNode.keys[word[0]]) {
             return false
-        }else{
-           return this.searchRecursive(word.substring(1), node.keys[word[0]])
+        } else {
+            return this.searchRecursive(word.substring(1), node.keys[word[0]])
         }
     }
-    searchPrefix(prefix){
-       let currNode = this.root
-       for(let i = 0; i< prefix.length; i++){
+    searchPrefix(prefix) {
+        let currNode = this.root
+        for (let i = 0; i < prefix.length; i++) {
             currNode = currNode.keys[prefix[i]]
-            if(!currNode) return false
-       }
-       return true
+            if (!currNode) return false
+        }
+        return true
     }
-    searchPrefixRecursive(prefix, node = this.root){
-        if(prefix.length === 0){
+    searchPrefixRecursive(prefix, node = this.root) {
+        if (prefix.length === 0) {
             return true
-        }else if(!node.keys[prefix[0]]){
+        } else if (!node.keys[prefix[0]]) {
             return false
-        }else{
+        } else {
             return this.searchPrefixRecursive(prefix.substring(1), node.keys[prefix[0]])
         }
     }
- }
+}
 
- let trie2 = new Trie3()
-console.log( trie2.insertRecursive('apple'))
-console.log( trie2.insertRecursive('ate'))
+let trie2 = new Trie3()
+console.log(trie2.insertRecursive('apple'))
+console.log(trie2.insertRecursive('ate'))
 //  console.log(trie2.search('dog'))
 //  console.log(trie2.search('ate'))
 //  console.log(trie2.searchPrefix('app'))
@@ -236,6 +236,6 @@ console.log( trie2.insertRecursive('ate'))
  //https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-interviews/learn/lecture/22531892#overview
  //************************FROM LECTURE */
 
- 
+
 
 
