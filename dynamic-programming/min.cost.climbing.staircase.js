@@ -38,7 +38,7 @@ i < 0 = return 0
                         /                        \
                 Min(minCost(n-1)                minCost(n-2))           + cost(n)
                   /             \                     /       \
-        Min(minCost(n-2), minCost(n-3))  + cost(n - 1)       (minCost(n-3), minCost(n-4))  + cost(n-2)            
+        Min(minCost(n-2), minCost(n-3))  + cost(n - 1)       (minCost(n-3), minCost(n-4))  + cost(n-2)
 
 
         Note that,
@@ -48,21 +48,21 @@ i < 0 = return 0
 */
 
 const cost = [20, 15, 30, 5],
-minCostClimbingStairs = (cost) => {
+    minCostClimbingStairs = (cost) => {
 
-    // here we want to call minCost function on n, n being the length of cost array
-    let n = cost.length
-    
-    // return final solution
-    // we also need to think about what the final solution is truly represented as
-    return Math.min(minCost(n-1, cost), minCost(n-2, cost))
-},
-minCost = (i, cost) => {
-    if(i < 0) return 0
-    if(i === 0 || i ===1 )return cost[i]
+        // here we want to call minCost function on n, n being the length of cost array
+        let n = cost.length
 
-    return cost[i] + Math.min(minCost(i -1, cost), minCost(i -2 , cost))
-}
+        // return final solution
+        // we also need to think about what the final solution is truly represented as
+        return Math.min(minCost(n - 1, cost), minCost(n - 2, cost))
+    },
+    minCost = (i, cost) => {
+        if (i < 0) return 0
+        if (i === 0 || i === 1) return cost[i]
+
+        return cost[i] + Math.min(minCost(i - 1, cost), minCost(i - 2, cost))
+    }
 
 
 /*
@@ -81,7 +81,7 @@ T: 2^N
 
 Space complexity:
 The call stack only contains calls of a single branch down to the bottom of our binary tree at worst so while there are still 2^N calls being made,
- the callstack will only ever be as large as N in size (which is the path that walks the maximum height of the tree 
+ the callstack will only ever be as large as N in size (which is the path that walks the maximum height of the tree
     when we take every single step available to the top)!
 
 
@@ -102,12 +102,12 @@ Easiest way to figure out what needs to be memeoized is to draw and observe the 
                   10
                / .       \
               9 .         8
-            / . \        / . \    
+            / . \        / . \
            8    7       7 .  6
-          / \  / \ .   / \   / \ 
+          / \  / \ .   / \   / \
          7  6 .6 5 .   6  5  5  4
         /..........similarly........
-        
+
         We notice that we end up calculating alot of these values over and over again
 We are constantly, repeatedly recalculating the same values just in different branches of the tree
 So we want to memoize these values, meaning that if we calculate any branch 1 time, then we want to memoize these values.
@@ -125,26 +125,26 @@ So we want to memoize these values, meaning that if we calculate any branch 1 ti
 
 let count = 0, count2 = 0
 const
-minCostClimbingStairs2 = (cost) => {
+    minCostClimbingStairs2 = (cost) => {
 
-    // here we want to call minCost function on n, n being the length of cost array
-    let n = cost.length
-    
-    // store memoization
-    const memory = []
-    // return final solution
-    // we also need to think about what the final solution is truly represented as
-    return Math.min(minCost2(n-1, cost, memory), minCost2(n-2, cost, memory))
-},
-minCost2 = (i, cost, memory) => {
+        // here we want to call minCost function on n, n being the length of cost array
+        let n = cost.length
 
-    if(i < 0) return 0
-    if(i === 0 || i ===1 )return cost[i]
+        // store memoization
+        const memory = []
+        // return final solution
+        // we also need to think about what the final solution is truly represented as
+        return Math.min(minCost2(n - 1, cost, memory), minCost2(n - 2, cost, memory))
+    },
+    minCost2 = (i, cost, memory) => {
 
-    if(memory[i]) return memory[i]
-    memory[i] = cost[i] + Math.min(minCost(i -1, cost), minCost(i -2 , cost))
-    return memory[i]
-}
+        if (i < 0) return 0
+        if (i === 0 || i === 1) return cost[i]
+
+        if (memory[i]) return memory[i]
+        memory[i] = cost[i] + Math.min(minCost(i - 1, cost), minCost(i - 2, cost))
+        return memory[i]
+    }
 
 
 
@@ -164,25 +164,25 @@ minCost2 = (i, cost, memory) => {
 */
 
 
-function minCostClimbingStairsBottomUp(cost){
+function minCostClimbingStairsBottomUp(cost) {
     const
-         dp = [],
-         n = cost.length
+        dp = [],
+        n = cost.length
 
     // here want to go bottom up
-    for(let i = 0; i < n; i++){
-        if(i < 2) {
+    for (let i = 0; i < n; i++) {
+        if (i < 2) {
             dp[i] = cost[i]
-        }else{
-            dp[i] = cost[i] + Math.min(dp[i-1], dp[i-2])
+        } else {
+            dp[i] = cost[i] + Math.min(dp[i - 1], dp[i - 2])
         }
     }
     // what we don;t have is the value outside our cost array, which is the final step we're looking for
     //[20, 15, 30,  5]
-    // 0 .  1 . 2 . 3   4  
+    // 0 .  1 . 2 . 3   4
     // here vlaue @ 4 is what we are looking for.
     // and vlaue @ 4 is the math.min between last two values we have
-    return Math.min(dp[n-1], dp[n-2])
+    return Math.min(dp[n - 1], dp[n - 2])
 }
 
 /*
@@ -200,13 +200,13 @@ function minCostClimbingStairsBottomUp(cost){
 
 
                           minCost(4)
-                         /        |       
-                        /         |  
+                         /        |
+                        /         |
                 minCost(3)        |
-                |       \         |  
-                |        \        |  
+                |       \         |
+                |        \        |
                 |        minCost(2)
-                |      /       \           
+                |      /       \
                 |    /           \
                 minCost(1) . minCost(0)
 
@@ -219,31 +219,31 @@ if we look at the tree, we never go back more than 2 steps
 */
 
 
-function minCostClimbingStairsBottomUpOptimization(cost){
+function minCostClimbingStairsBottomUpOptimization(cost) {
     let
-         stepOneBack =null,
-         stepTwoBack =null,
-         n = cost.length
+        stepOneBack = null,
+        stepTwoBack = null,
+        n = cost.length
 
     // here want to go bottom up
-    for(let i = 0; i < n; i++){
+    for (let i = 0; i < n; i++) {
 
-        if( i  === 0){
+        if (i === 0) {
             stepOneBack = cost[0]
-        }else if( i === 1){
+        } else if (i === 1) {
             stepTwoBack = cost[1]
         }
 
-        if( i % 2 === 0){
-            stepOneBack =   cost[i] + Math.min(stepOneBack,stepTwoBack)
-        }else if( i > 2 && i % 2 != 0){
-            stepTwoBack = cost[i] + Math.min(stepOneBack,stepTwoBack)
+        if (i % 2 === 0) {
+            stepOneBack = cost[i] + Math.min(stepOneBack, stepTwoBack)
+        } else if (i > 2 && i % 2 != 0) {
+            stepTwoBack = cost[i] + Math.min(stepOneBack, stepTwoBack)
         }
-        
+
     }
     // what we don;t have is the value outside our cost array, which is the final step we're looking for
     //[20, 15, 30,  5]
-    // 0 .  1 . 2 . 3   4  
+    // 0 .  1 . 2 . 3   4
     // here vlaue @ 4 is what we are looking for.
     // and vlaue @ 4 is the math.min between last two values we have
     return Math.min(stepOneBack, stepTwoBack)
@@ -253,26 +253,26 @@ function minCostClimbingStairsBottomUpOptimization(cost){
 
 
 
-function refactoredMinCostClimbingStairsBottomUpOptimization(cost){
+function refactoredMinCostClimbingStairsBottomUpOptimization(cost) {
     let
-         stepOneBack =cost[0],
-         stepTwoBack =cost[1],
-         n = cost.length
+        stepOneBack = cost[0],
+        stepTwoBack = cost[1],
+        n = cost.length
 
     // here want to go bottom up
-    for(let i = 2; i < n; i++){
- 
+    for (let i = 2; i < n; i++) {
+
         let currentValue = cost[i] + Math.min(stepOneBack, stepTwoBack)
         stepOneBack = stepTwoBack
         stepTwoBack = currentValue
-        
+
     }
     return Math.min(stepOneBack, stepTwoBack)
 }
-console.log(minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]))
+console.log(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]))
 console.log('count', count)
 
-console.log(minCostClimbingStairs2([1,100,1,1,1,100,1,1,100,1]))
+console.log(minCostClimbingStairs2([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]))
 console.log('count2', count2)
 
 console.log(refactoredMinCostClimbingStairsBottomUpOptimization(cost))

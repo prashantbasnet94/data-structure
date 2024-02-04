@@ -8,7 +8,7 @@
     Logic:
         1. Start from i = 0, and see
         2. dp[0] = true
-        3. dp[1] = true
+        3. dp[1] = false
            dp[2] = false
            dp[3] = false
            dp[4] = false
@@ -103,7 +103,8 @@ function topDown(s, wordDict) {
             //  a p p l e p e n
             // .            @ index , we cannot comare @ this case
             if (index + word.length <= s.length) {
-                if (wordDict.indexOf(s.substring(index, index + word.length)) > -1) {
+                let formedWord = s.substring(index, index + word.length) > -1
+                if (wordDict.indexOf(formedWord)) {
                     dp[index] = dp[index + word.length]
                 }
             }
@@ -115,3 +116,68 @@ function topDown(s, wordDict) {
 
 console.log(topDown("leetcode", ["leet", "code"]))
 console.log(topDown("applepenapple", ["apple", "pen"]))
+
+
+/*
+    leetcode, ['leet', 'code']
+
+             0  1  2  3  4  5  6  7
+        dp: [l, e, e, t, c, o, d, e]
+
+        1. initialize a dp array with the size of given string
+        2. either we need to start matching from either from left or right pointer
+        3.  start from left {
+            i. check two condition
+                a. currentWord is smaller than totalLength: if the currentPointer + word.length <= string .length
+                b. if the currentWord is in the array
+                    ***** update dp[index] = true *****
+                ### currentWord = substring(index, index + word.length)
+        }
+
+*/
+
+
+function wordBreak2(s, breakArray) {
+    const dp = new Array(s.length).fill(false)
+    dp[s.length] = true
+
+    for (let index = s.length - 1; 0 <= index; index--) {
+        for (let word of breakArray) {
+            // if the current forming word is less than the length of total word
+            if (index + word.length < s.length) {
+                if (breakArray.indexOf(s.substring(index, index + word.length)) > -1) {
+                    dp[index] = dp[index + word.length]
+                }
+            }
+        }
+        dp[index] = dp[index]
+    }
+}
+
+
+function wordBreak(string, words) {
+
+    /*
+
+    leetcode
+    ['leet', 'code']
+
+
+    */
+
+    const dp = new Array(string.length).fill(false)
+    for (let index in string) {
+        for (let word of words) {
+            // if substring of string exist in the words we update our dp
+            const formedWord = string.substring(index - word.length, index)
+
+            const previousSubStringIsAlsoThere = dp[index - word.length]
+            if (previousSubStringIsAlsoThere && words.indexOf(formedWord) > -1) {
+                dp[index] = true
+            }
+        }
+    }
+    return dp[0]
+}
+
+console.log(wordBreak('leetcode',  ['leet', 'code']))

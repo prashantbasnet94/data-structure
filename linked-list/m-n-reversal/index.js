@@ -59,9 +59,9 @@ const mnReversal = (head, m, n) => {
     mnReversal2 = (head, m, n) => {
         /*
     1 => 2 => 3 => 4 => 5 => 6 => 7
-    
+
     m = 3, n = 5
-    
+
         */
         let
             currentPosition = 1,
@@ -107,24 +107,24 @@ const mnReversal = (head, m, n) => {
         /*
         1 => 2 => (3) => 4 => 5 => 6 => 7
         m = 3, n = 6
-        
+
         1 => 2 => 6 => 5 => 4 => 3 => 7
-        
+
         next  => 4, 5, 6
         currNode.next => 4, null, 4,
         reversedlist => null, 4, 5
         currNode => 4, 5
         currPosition => 5
-        
-        
-        
-        
+
+
+
+
         next  => 4, 5
         currNode.next => 4 => null   5 => 3 => null
         newList => null, 3 => null, 4 => 3 => null, 5 => 4 => 3 => null
         currNode => 4
         currPosition => 4
-        
+
         */
 
 
@@ -172,3 +172,112 @@ let linkedList = {
     }
 }
 console.log(mnReversal2(linkedList, 3, 6))
+
+
+
+
+/*
+1 => 2 => 3 => 4 => 5 => 6 => 7 , m = 3, n = 6
+
+1 => 2 => 5 => 4 => 3 => 6 => 7
+
+i have a linked list and i want to reverse it from m position to n position
+
+*/
+
+
+function basicReverse(head) {
+    // access current Node
+    // alter it
+    // store in result
+
+    let curentNode = head
+    let temp = curentNode
+    let result = null
+
+    /*
+    while (curentNode) {
+        // preserve the currentNode
+        //process the currentNode
+        // store the result
+        // prep for next
+
+
+        temp = curentNode
+        curentNode.next = result
+        result = curentNode
+        curentNode = temp
+    }
+    */
+
+    // now above code will run the reversing for entire list
+    // if we only want to do it for specific point from to then we need to change the login for sure
+
+
+    /*
+        Things to consider
+
+         m = 3, n = 5
+
+1 => 2 => 3 => 4 => 5 => 6 => 7 ,
+
+1 => 2 => 5 => 4 => 3 => 6 => 7
+
+
+1. i will traverse the list as it is to the point right before the reversal starts
+    i.e (2)
+
+2. when we reach 2 we will start the reversal process from the next round
+    this position is important because 2.next = reversed list
+
+3. Now when we reach 3, we will get into reversal algo
+
+    3 => 4 => 5
+    5 => 4 => 3
+
+
+4. (m - 1) .next = result
+5. result.tail = (6)
+
+
+
+    */
+
+
+
+    let m = 3, n = 5
+    let currentNodeIndex = 1
+
+
+    while (curentNode < m - 1) {
+        curentNode = curentNode.next
+        currentNodeIndex++
+    }
+
+    // now we are the the m - 1 position
+    let startingNode = curentNode
+
+    let tail = curentNode.next
+
+    while (curentNode && currentNodeIndex < n) {
+        // preserve
+        // process
+        // store
+        // prep
+
+        temp = curentNode
+        curentNode.next = result
+        result = curentNode
+        curentNode = temp
+        currentNodeIndex++
+    }
+
+    // here in the result we have the reversed list
+
+    startingNode.next = result
+    // (2) =>( 5 => 4 => 3 )
+    tail.next = curentNode
+    // (3) => 6 => 7
+
+
+}

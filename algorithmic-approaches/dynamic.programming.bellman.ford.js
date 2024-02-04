@@ -16,7 +16,7 @@ To begin with the basic understannding of dynamic probelm, we need to backtrack 
 
 
 Greedy method was something that helped us solve optimization problem.
-Opitmization problem consist of min or max problem, where you have multiple decision that you need to make inorder to optimize your solution to find the min value  
+Opitmization problem consist of min or max problem, where you have multiple decision that you need to make inorder to optimize your solution to find the min value
 or a max value amongst the series of chioces.
 
 
@@ -24,15 +24,15 @@ or a max value amongst the series of chioces.
          1
     > A ----> C ---
  4 /        ^  \     \4
- /         /    \      V   
-(S)       /6     \7     E  
+ /         /    \      V
+(S)       /6     \7     E
  \ 2     /        \    ^
-  \     /          V   | 10  
+  \     /          V   | 10
      > B --------- > D
             5
 
 
-   
+
 
      let look at example:
 
@@ -57,7 +57,7 @@ Inorder to find the shortest path this algo travels to all the possible path and
 
 Dynamic programming, on the other hand recognizes that the only way you can be 100% sure you have the correct answer is by building out
 the entire state space tree and exploring every possible path and option.
- 
+
 However, where it aims to improve in the time it takes to build up this tree where it recognizes you repeat a lot of work when you explore
 every single path.
 
@@ -74,7 +74,7 @@ any consumption cycles that this process takes.
 
 And this is what dynamic programming aims to do
 
-It sees that there is repeated work, it stores the value of the work somewhere so that if we ever come here again later on, we 
+It sees that there is repeated work, it stores the value of the work somewhere so that if we ever come here again later on, we
 don;t have to recalulate it. We saved it somewhere.
 
 The process of saving these values in known as memoization.
@@ -91,10 +91,10 @@ In the example:
          1
     > A ----> C ---
  4 /        ^  \     \4
- /         /    \      V   
-(S)       /6     \7     E  
+ /         /    \      V
+(S)       /6     \7     E
  \ 2     /        \    ^
-  \     /          V   | 10  
+  \     /          V   | 10
      > B --------- > D
             5
 
@@ -126,10 +126,10 @@ So now if we were to repeat these last three steps instead
          1
     > A ----> C ---
  4 /        ^  \     \4
- /         /    \      V   
-(S)       /6     \7     E  
+ /         /    \      V
+(S)       /6     \7     E
  \ 2     /        \    ^
-  \     /          V   | 10  
+  \     /          V   | 10
      > B --------- > D
             5
 
@@ -157,7 +157,7 @@ Continuing on we go from S-B i.e another branch
 Now we got all of the right calculations. So here we notice 1: S-A-C-E => 9, is still the shortest path.
 
 
-But what you will see throgh this dynamic programming calculation is that we've saved ourselves not only an entire branch of work, 
+But what you will see throgh this dynamic programming calculation is that we've saved ourselves not only an entire branch of work,
 but also reduced the amount of work we had to do for these branches.
 
 This is what dynamic programmign helps us to do.
@@ -166,8 +166,8 @@ It realizes that we still need to caluclate all of the possiblilites
 
 However, a lot of these possiblites are repititive and repeated work that we've already done.
 
-So let's save ourselves from doing that work by reconfiguring the question and thinking about it in such a way that 
-we can reduce and save ourselves those calcuations by storing the correct answer at certain points that gets repeated 
+So let's save ourselves from doing that work by reconfiguring the question and thinking about it in such a way that
+we can reduce and save ourselves those calcuations by storing the correct answer at certain points that gets repeated
 in the state based tree,
 
 The biggest challenge is recognizing what you need to store and why?
@@ -177,7 +177,7 @@ How do we figure out what to store?
 
 This is going to be the main challenge that we want to solve through our dyanamic programming
 
-Now we know this high level concept of dynamic programming, let's learn how Bellmanford utilizes it in order to solve this problem of figuring out the 
+Now we know this high level concept of dynamic programming, let's learn how Bellmanford utilizes it in order to solve this problem of figuring out the
 shortest soruce node distance to all other vertexes.
 
 
@@ -196,15 +196,15 @@ https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-intervie
 
                5
          ---------------------|
-         v       9            | 
-         1 ----------> 2 <-   | 
-         |           ^  |  \  |  
-         |          /   | 3 \ | 
+         v       9            |
+         1 ----------> 2 <-   |
+         |           ^  |  \  |
+         |          /   | 3 \ |
         2|      -4/     |    \|
          |      /       |     3
          |    /       3 |    ^
          V  /           V  / 7
-         4  ----------> 5            
+         4  ----------> 5
                6
 
 
@@ -213,7 +213,7 @@ This graphs has negative weight, which is where Dijkstra's algorithm fails becau
 
 
 Bellman ford is a dyanamic programming algorithm, meaning that it utilizes dynamic prgramming under the hood to efficiently solve
-an optimization problem. 
+an optimization problem.
 
 
 In this praticualr case, the optimiation problem is a minimzation problem because we are tying to solve from a single source vertex what is
@@ -240,7 +240,7 @@ However, in order for us to understand why it's implmented the way it is, we do 
 
 And through that, we'll also  get a better understanding of dynamic prgramming.
 
-Here, we know it is trying to solve the optimization minimization problem of figuring out from some given source vertex the lowest costing path to 
+Here, we know it is trying to solve the optimization minimization problem of figuring out from some given source vertex the lowest costing path to
 every other vertex in the graph.
 
 
@@ -256,16 +256,16 @@ here it would be the furthest vertex.
 When we think about the number of edgesm, we also don;t want to run in cycles because that's just wasting steps.
 
                5
-         ---------------------|
-         v       9            | 
-         1 ----------> 2 <-   | 
-         |           ^  |  \  |  
-         |          /   | 3 \ | 
+         |--------------------|
+         v       9            |
+         1 ----------> 2 <-   |
+         |           ^  |  \  |
+         |          /   | 3 \ |
         2|      -4/     |    \|
          |      /       |     3
          |    /       -3|    ^
          V  /           V  / 7
-         4  ----------->  5            
+         4  ----------->  5
                6
 
 
@@ -275,11 +275,11 @@ When we think about the number of edgesm, we also don;t want to run in cycles be
 what we notice is happening is that we're walking through every single vertex
 
 The relationship is actually defined as (N-1) where N is the number of vertices in the graph!
-We can picture with a really large graph that will still be the case because 
+We can picture with a really large graph that will still be the case because
 
 N -1:
 
-1. you in the worst case  will walk through every vertex once, 
+1. you in the worst case  will walk through every vertex once,
 2. -1 comes from the fact that we are standing on one node.
 
 
@@ -291,8 +291,8 @@ if we are trying to figure out the shortest possible path to some specific targe
 There are N-1 edges to pass through in the worst possible path, but there might be numerous N-1 paths
 
 
-We can imagine that this graph could be given to us in a way where one has a direct connection to there. 1- 3 
-or 
+We can imagine that this graph could be given to us in a way where one has a direct connection to there. 1- 3
+or
 1-2-3
 or
 1-4-3
@@ -325,13 +325,13 @@ When we conntinue and check these cycles, these values in any of these vertices 
 After 4 iteration , when n= 5, n-1 = 4
 the value will keep reducing at one of these nodes inside of this -ve cycle for any subsequent iteration
 
-That's why it fails, and is the limitation. 
+That's why it fails, and is the limitation.
 Because  Bellman ford assumes that there are no -ve cycles inside of the graph.
 
 But Bellmanford also allows us to check for any -ve cycles in the graph.
 
 If you get a question that asking you to detect a -ve cycly in a graph by implmenting bellman
-what you do is you go up to N -1 iteration, and calculate and record values at that point of N-1 
+what you do is you go up to N -1 iteration, and calculate and record values at that point of N-1
 and then you go one more step furhter down:
 if any of these values update again, after you've perfomred N -1 iteration, then that means you have -ve cycle
 ---------------------------------------------------------------------------------------------------------------
@@ -340,72 +340,72 @@ const times = [
    [1, 2, 9], [1, 4, 2], [2, 5, 1],
    [4, 2, 4], [4, 5, 6], [3, 2, 3], [5, 3, 7], [3, 1, 5]
 ],
-times2 = [[1, 4, 2], [1, 2, 9], [4, 2, -4], [2, 5, -3], [4, 5, 6],[3, 2, 3], [5, 3, 7], [3, 1, 5]]
-function networkTimeDelay(times, n, k){
+   times2 = [[1, 4, 2], [1, 2, 9], [4, 2, -4], [2, 5, -3], [4, 5, 6], [3, 2, 3], [5, 3, 7], [3, 1, 5]]
+function networkTimeDelay(times, n, k) {
    let
-    distances = new Array(n).fill(Infinity)
-    distances[k-1] = 0
-    /*
-      adjacencyList: [
-         0:[[1, 9],[3, 2] ],
-         1:[[4, 1]]
+      distances = new Array(n).fill(Infinity)
+   distances[k - 1] = 0
+   /*
+     adjacencyList: [
+        0:[[1, 9],[3, 2] ],
+        1:[[4, 1]]
 
-      ]
-    */
-    for(let i =0 ; i < n-1 ; i++){
-      for (let value of times){
-         let 
+     ]
+   */
+   for (let i = 0; i < n - 1; i++) {
+      for (let value of times) {
+         let
             source = value[0],
             target = value[1],
             weight = value[2]
-            if(distances[source - 1] + weight < distances[target-1]){
-               distances[target-1] = distances[source-1] + weight
-            }
-       }
-    }
-    let answer  = Math.max(...distances)
-    return answer === Infinity ? -1 : answer
+         if (distances[source - 1] + weight < distances[target - 1]) {
+            distances[target - 1] = distances[source - 1] + weight
+         }
+      }
+   }
+   let answer = Math.max(...distances)
+   return answer === Infinity ? -1 : answer
 }
 
 
 // **************** After Lesson ************************
 
-function networkTimeDelay2(times, n, k){
-   let 
+function networkTimeDelay2(times, n, k) {
+   let
       distances = new Array(n).fill(Infinity)
-      distances[k-1] = 0
+   distances[k - 1] = 0
 
-      // next step is to implment N-1 iteration of the Bellman ford algo
-      // inorder for us to run iteration n-1 times we use for loop
-      for(let i =0; i< n-1; i++ ){
-         /*
-           we also want to keep track of wheather or not the values inside our distance array has bee updated 
-          remember, there's a chance that by the first or second or third iteration, we;ve already updated all the values
-          and running through all of our edges is just wasting needless cycles.
+   // next step is to implment N-1 iteration of the Bellman ford algo
+   // inorder for us to run iteration n-1 times we use for loop
+   for (let i = 0; i < n - 1; i++) {
+      /*
+        we also want to keep track of wheather or not the values inside our distance array has bee updated
+       remember, there's a chance that by the first or second or third iteration, we;ve already updated all the values
+       and running through all of our edges is just wasting needless cycles.
 
-          so all we need to do is at the start of every for loop instantiation we create a variable to keep track
-          */
+       so all we need to do is at the start of every for loop instantiation we create a variable to keep track
+       */
 
-          // increment when value is updated in distances
-          let count = 0;
+      // increment when value is updated in distances
+      let count = 0;
 
-          // at this point, we have all of the edges defined for us in the times array
-         for (let j = 0; j< times.length; j++){
-            let 
-               source = times[j][0],
-               target = times[j][1],
-               weight = times[j][2]
+      // at this point, we have all of the edges defined for us in the times array
+      for (let j = 0; j < times.length; j++) {
+         let
+            source = times[j][0],
+            target = times[j][1],
+            weight = times[j][2]
 
-               if(distances[source-1] + weight < distances[target-1]){
-                  distances[target-1] = distances[source-1] + weight
-                  count++
-               }
+         if (distances[source - 1] + weight < distances[target - 1]) {
+            distances[target - 1] = distances[source - 1] + weight
+            count++
          }
-
-         if(count === 0) break
       }
-       let answer  = Math.max(...distances)
-      return answer === Infinity ? -1 : answer
+
+      if (count === 0) break
+   }
+   let answer = Math.max(...distances)
+   return answer === Infinity ? -1 : answer
 }
 
 console.log(networkTimeDelay(times2, 5, 1))

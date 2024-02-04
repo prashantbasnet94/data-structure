@@ -27,7 +27,7 @@
 
 ---------- var defined is updated in descending order in the loop   ---------
     }
-    
+
 
 
 
@@ -67,3 +67,16 @@ let linkedList = {
     }
 }
 console.log(reverseLinkedList(linkedList))
+
+
+function reverseLinkedList2(head) {
+    let prev = null, currentNode = head, next
+
+    while (currentNode) {
+        next = currentNode.next
+        currentHead.next = prev
+        prev = currentNode
+        currentNode = next
+    }
+    return prev
+}

@@ -6,7 +6,7 @@
     Times when we want to do operation in the node. We might want to add a color property to a node,
     perhaps if we have a user node, we wannt to add age property to all our user that are in the tree structure
 
-    Can you check if our binary search tree, we enter in our db is correct and valid, that our left item is always lower than right items? 
+    Can you check if our binary search tree, we enter in our db is correct and valid, that our left item is always lower than right items?
 
     in order for us to check that, we have touch every single node, but will we go about doing this?
 
@@ -16,7 +16,7 @@
 
     Tree or graph treversal , our two options are exact same:
 
-    1. Breadth First Search 
+    1. Breadth First Search
     2. Depth First Search
 
     sometimes it's also called treverasl instead of search
@@ -25,7 +25,7 @@
 
 
     Let's reveiw, why we don't store everything in list, which are simpler to understand!
-    The main benifit why we don't put complex data into just list i.e arrays that are sorted is that we get 
+    The main benifit why we don't put complex data into just list i.e arrays that are sorted is that we get
     O(N) for search
 
     what about hash table?
@@ -39,7 +39,7 @@
  Trees and graphs are used alot when we want to search nodes or visit every node. It represets alot of data that models the real world
 
  Let's explore how BFS and DFS works!
- 
+
 */
 
 
@@ -70,18 +70,18 @@
             3       4   6       7
 
     DPS has a lower momory requirement than BFS, cause it's not necessary to store all the childs pointers at each level
-    
+
     The idea with Depth First Search is that we want to go deep as possible on tree or graph usally starting from the left side and then start going to the right
-    until travesal is done. 
+    until travesal is done.
     As the name suggest we go deep first
 
-                                         1           
-                                2        5       9     
+                                         1
+                                2        5       9
                             3         6      8        10
                         4       7
 DFS is like walking through the maze go far as we can and when we hit a dead end, you turn back around and go the next point where you can make left or right turn
 until you get to the end of maze
-        
+
 
 Eg:
                    9
@@ -93,7 +93,7 @@ DFS: [9,4,1,6,20,15,170]
 
 
 BFS:
-Water flooding 
+Water flooding
         -
        ----
     ---------
@@ -101,9 +101,9 @@ Water flooding
 
 DFS:
          |
-       |   | 
        |   |
-      | | | | 
+       |   |
+      | | | |
 
 What is advange of one over the other?
 What type of travesal to do?
@@ -153,7 +153,7 @@ And since solutions are rare it most likely it's going to repeat that process ov
 
 3. IF the tree is very wide?
 DFS
-Becuase BFS needs too much memory. As it has to keep tracks of nodes in current level 
+Becuase BFS needs too much memory. As it has to keep tracks of nodes in current level
 
 4. If solutions are frequest but the located deep in the tree?
 DFS
@@ -180,7 +180,7 @@ Very Deep => BFS => DFS can be really slow
     Breadth First Search:
     Memory concern:
     From the top , to the left to the right, and visit all the node in that level.
-    
+
 
             9
     4           20
@@ -204,7 +204,7 @@ let BinarySearchTree = require('../binary-tree/binary.search.tree')
     queue = 9,
     as it passes through 4 and 20,
 
-    does  9 has left child? 
+    does  9 has left child?
     adds 4 to the queue
 
     does 9 has right child?
@@ -248,7 +248,7 @@ let BinarySearchTree = require('../binary-tree/binary.search.tree')
 
 */
 BinarySearchTree.prototype.breadthfirstsearch = function(){
-    let 
+    let
         currentNode = this.root,
         list = [],
         queue = []
@@ -273,9 +273,46 @@ BinarySearchTree.prototype.breadthfirstsearch = function(){
 const tree = new BinarySearchTree()
 
 tree.insert(9)
-tree.insert(12) 
-tree.insert(6) 
-tree.insert(1) 
+tree.insert(12)
+tree.insert(6)
+tree.insert(1)
 console.log(tree.root)
 console.log(tree.breadthfirstsearch())
 
+
+function revision() {
+    /*
+        1. Access root with currentNode
+        2. Define list to store result
+        3. Define a queue to process
+        4. Push currentNode to the queue
+    */
+    let currentNode = this.root
+    let list = []
+    let queue = []
+
+    queue.push(currentNode)
+
+    while (queue.length > 0) {
+        /*
+            1. Process current queuue
+            2. Add value to the list
+            3. Now go to the left node & store it on queue
+            4. Go on the right Node then store it on a queue
+        */
+
+        let currentNode = queue.shift()
+        list.push(currentNode.value)
+
+        if (currentNode.left) {
+            queue.push(currentNode.left)
+        }
+
+        if (currentNode.right) {
+            queue.push(currentNode.right)
+        }
+
+    }
+
+    return list
+}

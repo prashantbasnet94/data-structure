@@ -29,13 +29,13 @@ function recusion2(i , j, A, B, dp){
     if( A[i] === undefined || B[j] === undefined){
          return 0
     }
- 
+
      if(A[i] === B[j]){
         if(dp[i][j]) return dp[i][j]
-        dp[i][j]= 1 + recusion(i + 1, j + 1, A, B)
+        dp[i][j]= 1 + recusion2(i + 1, j + 1, A, B)
      }else{
         dp[i][j]=  Math.max(recusion2(i + 1, j , A, B, dp) , recusion2(i , j+ 1, A, B,dp))
      }
      return dp[i][j]
- 
+
  }

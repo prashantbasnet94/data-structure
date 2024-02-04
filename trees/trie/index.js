@@ -64,7 +64,7 @@ class Trie {
 
     search(word) {
         console.log('searching word', word)
-        /*  
+        /*
             search(zebra)
                 tree
             a   b   c   d
@@ -152,7 +152,7 @@ class Trie3 {
     }
     insert(word) {
         // if first word exist then go down that path
-        // if not create a key 
+        // if not create a key
         let currNode = this.root
         for (let i = 0; i < word.length; i++) {
             if (!currNode.keys[word[i]]) {
@@ -177,7 +177,7 @@ class Trie3 {
             node.keys[word[0]] = Trie2()
             this.insertRecursive(word.substring(1), node.keys[word[0]])
         }
-        // if key exist 
+        // if key exist
         else {
             this.insertRecursive(word.substring(1), node.keys[word[0]])
         }
@@ -239,3 +239,47 @@ console.log(trie2.insertRecursive('ate'))
 
 
 
+function node() {
+    return {
+        isEnd: false,
+        keys:{}
+    }
+}
+
+class trie {
+    constructor() {
+        let root = node()
+    }
+    insert(word, node = this.root){
+        if (word.length === 0) {
+            return true
+        }
+        // if the currently processing char node does not exist then create one
+        if (!node.keys[ word[ 0 ] ]) {
+            node.keys[ word[ 0 ] ] = node()
+            this.insert(word.substring(1), node.keys[word[0]])
+        }
+        return  this.insert(word.substring(1, node.keys[word[0]]))
+    }
+
+    search(word, node = root) {
+        if (word.length === 0) {
+            return node.isEnd
+        }
+        if (!node.keys[ word[ 0 ] ]) {
+            return false
+        }
+        return this.search(word.substring(1), node.keys[word[0]])
+    }
+
+    searchPrefix(word, node = root) {
+        if (word.length === 0) {
+            return node.keys
+        }
+        if (!node.keys[ word[ 0 ] ]) {
+          return false
+        }
+        return this.searchPrefix(word, node.keys[word[0]])
+    }
+
+}

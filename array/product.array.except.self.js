@@ -1,4 +1,4 @@
-/*  
+/*
          0 . 1   2   3
         [1,  2,  3,  4]
 
@@ -42,7 +42,7 @@ function productArray(nums) {
     for (let i = 1; i < nums.length; i++) {
         prefix[i] = nums[i] * prefix[i - 1]
     }
-    // nothing after index nums.length - 1, so to neutralize 
+    // nothing after index nums.length - 1, so to neutralize
     postfix[nums.length - 1] = nums[nums.length - 1]
     for (let i = nums.length - 2; i >= 0; i--) {
         postfix[i] = nums[i] * postfix[i + 1]
@@ -66,7 +66,7 @@ function productArray(nums) {
 // productArray([1, 2, 3, 4])
 
 /*
-           0   1   2    3   4           
+           0   1   2    3   4
          [-1,  1,  0,  -3,  3]
 
 prefix   [1    1   0 .  0   0]
@@ -81,14 +81,14 @@ function refactored(nums) {
     let
         prefix = [],
         postfix = []
- 
-    prefix [0] = 1
+
+    prefix[0] = 1
     // nothing before index 0, so to neutralize
     for (let i = 1; i < nums.length; i++) {
-        prefix[i] = nums[i] * (prefix[i - 1] )
+        prefix[i] = nums[i] * (prefix[i - 1])
     }
     postfix[nums.length] = 1
-    for(let i = nums.length - 1; i > -1; i--){
+    for (let i = nums.length - 1; i > -1; i--) {
         postfix[i] = nums[i] * postfix[i + 1]
     }
     console.table(prefix)
@@ -96,8 +96,8 @@ function refactored(nums) {
 
     const res = []
 
-    for (let i = 1; i < nums.length -1; i++) {
-        res[i] = prefix[i-1] * postfix[i+1];
+    for (let i = 1; i < nums.length - 1; i++) {
+        res[i] = prefix[i - 1] * postfix[i + 1];
     }
     res[0] = postfix[1];
     res[nums.length - 1] = prefix[nums.length - 2];
@@ -108,29 +108,55 @@ function refactored(nums) {
 function refactoredFinal(nums) {
     let
         prefix = 1,
-        res =[],
+        res = [],
         postfix = 1
- 
+
     // nothing before index 0, so to neutralize
     for (let i in nums) {
         res[i] = prefix
         prefix *= nums[i]
     }
     // console.table(res)
-    // nothing after index nums.length - 1, so to neutralize 
-     for (let i = nums.length - 1; i > -1; i--) {
+    // nothing after index nums.length - 1, so to neutralize
+    for (let i = nums.length - 1; i > -1; i--) {
         //      postfix * prefix
-       res[i] = postfix * res[i]
-       postfix *= nums[i]
+        res[i] = postfix * res[i]
+        postfix *= nums[i]
     }
     console.table(res)
 
-    return res 
+    return res
+}
+
+function productArray2(nums) {
+    /*
+        logic:
+            1. Calculate a prefix i.e left hand side
+            2. Calculate a postfix i.e right hand side
+            3. Merge prefix and postfix
+
+    */
+
+    let productLHS = 1
+    const result = []
+    for (let index in nums) {
+        result[index] = productLHS
+        productLHS *= nums[index]
+    }
+
+    let productRHS = 1
+
+    for (let i = nums.length - 1; i > -1; i--) {
+        //postfix     prefiix
+        result[i] = productRHS * result[i]
+        productRHS *= nums[i]
+    }
+    return result
 }
 
 
 
-refactored( [-1,1,0,-3,3])
+refactored([-1, 1, 0, -3, 3])
 console.log('-----')
-refactoredFinal( [-1,1,0,-3,3])
+refactoredFinal([-1, 1, 0, -3, 3])
 

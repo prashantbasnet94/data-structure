@@ -4,7 +4,7 @@
 
 const root = myNode()
 function Trie(){
-    
+
 }
 Trie.prototype.root = {
 
@@ -121,3 +121,114 @@ trie.insert('what')
 console.log(trie.root)
 console.log(trie.searchRecursive('what'))
 console.log(trie.searchRecursive('whatt'))
+
+
+
+function node() {
+    return {
+        isEnd: false,
+        keys: {}
+    }
+}
+class Revision{
+    constructor() {
+        this.root = node()
+    }
+
+    insert(word, node = this.root) {
+        if (word.length === 0) {
+            return true
+        } else if (!node.keys[ word[ 0 ] ]) {
+            node.keys[ word[ 0 ] ] = node
+            this.insert(word.substring(1), node.keys[word[0]])
+        }
+        return this.insert(word.substring(1), node.keys[word[0]])
+    }
+
+    search(word, node = this.root) {
+        if (word.length === 0) {
+            return node.isEnd
+        } else if (node.keys[word[0]]) {
+            return true
+        }
+        return this.search(word.substring(1), node.keys[word[0]])
+    }
+
+    prefix(prefix, node = this.root) {
+        if (prefix.length === 0) {
+            return true
+        } else if (!node.keys[prefix[0]]) {
+            return false
+        } else {
+            return this.prefix(prefix.substring(1), node.keys[prefix[0]])
+        }
+    }
+
+
+}
+
+
+
+function myNode(value) {
+    return {
+        value,
+        next: {}
+    }
+}
+
+function trieAutoSuggestion() {
+    let root = {}
+
+    insert(word, node = this.root){
+        /*
+            1. initiate a node with current char
+            2. check if currentNode exist in the trie
+                a. if exist then check for the 2nd char in the word
+                b. if it does not exist then trie[currentChar] = new Node
+        */
+
+        if (word.length === 0) {
+            return true
+        }
+
+        if (!node.keys[ word[ 0 ] ]) {
+            node.keys[ word[ 0 ] ] = node()
+            insert(word.substring(1), node.keys[ word[ 0 ] ])
+        }
+
+        return this.insert(word.substring(1), node.keys[word[0]])
+    }
+    searchWord(word, node = this.root){
+        /*
+            1. pick a current char
+            2. now from the root node on the keys search the first char of the word searched
+                a. then search 2nd
+                b. then search 3rd
+                c. if anytime while searching the nodes doesn't exist return false else return true
+        */
+
+        if (word.length === 0) {
+            return node.keys
+        }
+        if (!node.keys[ word[ 0 ] ]) {
+            return false
+        }
+        return this.searchWord(word.substring(1), node.keys[word[0]])
+    }
+    searchPrefix(word, node){
+        /*
+            do the same flow as preifx word and at the last char of prefix see keys of that node exist
+                1. return true if child keys exist
+                2. return false if doesn't exist
+        */
+        if (word.length === 0) {
+            return node.keys
+        } else if (!node.keys[ word[ 0 ] ]) {
+            return false
+        }
+        this.searchPrefix(word.substring(1), node.keys[word[0]])
+    }
+    remove(word){
+
+    }
+}

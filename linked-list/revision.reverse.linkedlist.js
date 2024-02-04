@@ -1,28 +1,3 @@
-/*
- 1  =>  2   =>  3   =>  4   =>  5
-
-
- reversing a linked list is:
-
- 5 => 4 => 3 => 2 => 1
-
-
- breaking down:
-
-    1 => 2
-
-    we want,
-    2 => 1 => null
-
-
- 1. we need current head to point to null
-    a. need to be carefull that if we point the head to the null then we will lose our rest of linked list
-       so we need to store currentHead 
-    b. We need to store newly build linked list
-    
-
-
-*/
 
 
 function reverseLinkedList(head) {
@@ -55,14 +30,15 @@ function reverseLinkedList(head) {
 }
 
 function afterStudy(head) {
-    /* 
+    /*
         we need 3 things
      prevBuild  currentHead next
      null       1           2
 
 
+
      run a while loop where currentHead exist
-    
+
          1 preserve the next using next var
             next = currentHead.next
 
@@ -71,7 +47,7 @@ function afterStudy(head) {
 
          3. now update your prevBuild
             prevBuild = currentHead
-        
+
         4. update the currentHead with the preserved next
             currentHead = next
 
