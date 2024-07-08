@@ -5,7 +5,8 @@ const { count } = require('yargs')
 https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-interviews/learn/lecture/22506628#questions
 
 Dijkstra cannot solve problem with sortest distance if -ve weight is present
-Solves the same problem, which is when you have a single source as the vertex that you want to figure out the shortest distance to all other vertext in the graph
+Solves the same problem, which is when you have a single source as the vertex that you want to figure out
+ the shortest distance to all other vertext in the graph
 
 Bellman Ford is a algorithm that depends on dynamic programming.
 
@@ -39,7 +40,7 @@ or a max value amongst the series of chioces.
      we want to find the shortest path between (S) and E. we want lowest weighted path
     What we are looking for is optimization on the minimum value
 
-The only way you can be certain that you have the lowest weighted path is by exploring every single path possible and figuring out what thier weights are
+The only way you can be certain that you have the lowest weighted path is by exploring every single path possible and figuring out what thier weights are,
 and then choosing the one with the lowest weight.
 
 That;s the only way you can be guarenteed that the path that you have has indeed the lowest weight
@@ -340,8 +341,29 @@ const times = [
    [1, 2, 9], [1, 4, 2], [2, 5, 1],
    [4, 2, 4], [4, 5, 6], [3, 2, 3], [5, 3, 7], [3, 1, 5]
 ],
-   times2 = [[1, 4, 2], [1, 2, 9], [4, 2, -4], [2, 5, -3], [4, 5, 6], [3, 2, 3], [5, 3, 7], [3, 1, 5]]
-function networkTimeDelay(times, n, k) {
+times2 = [[1, 4, 2], [1, 2, 9], [4, 2, -4], [2, 5, -3], [4, 5, 6],[3, 2, 3], [5, 3, 7], [3, 1, 5]]
+
+/*
+You are given a network of n nodes, labeled from 1 to n.
+You are also given times, a list of travel times as directed edges times[i] = (ui, vi, wi),
+ where ui is the source node, vi is the target node, and wi is the time it takes for a signal to travel from source to target.
+
+We will send a signal from a given node k. Return the minimum time it takes for all the n nodes to receive the signal.
+If it is impossible for all the n nodes to receive the signal, return -1.
+
+
+    QUESTION:
+      1. times = [[source, target, time]]
+      2. n = number of nodes
+      3. k is source node that is sending the signal
+
+         () => return minimum time it takes for all the n nodes to receive the signal
+*/
+
+
+
+
+function networkTimeDelay(times, n, k){
    let
       distances = new Array(n).fill(Infinity)
    distances[k - 1] = 0

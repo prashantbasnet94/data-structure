@@ -243,7 +243,7 @@ What about the limitation?
 
        The limit to greedy method is that this only works in some contexts. It does not work all the time
 
-       here, if we change up the value in this way 
+
 
 *********************** Question ********************************************************************
 There are n network nodes labelled 1 to N.
