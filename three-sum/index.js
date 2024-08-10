@@ -1,4 +1,4 @@
-/*
+ /*
 
 Questons:
     1. Can the array include -ve => yes
@@ -85,7 +85,7 @@ for( let i =0; i < input.length ; i++){
 
         if(sum < 0){
             leftPointer++
-        }else if( sum > 0 ){
+        }else if( 0 < sum ){
             rightPointer --
         }else{
             result.push([sortInput[i], sortInput[leftPointer], sortInput[rightPointer]])
@@ -105,3 +105,56 @@ return result
 }
 // console.log(threeSum([-1,0,1,2,-1,-4]))
 console.log(threeSum([0,0,0]))
+
+
+
+
+
+
+function twoSum(nums, target){
+    let map = {}
+    for(i =0; i < nums.length; i++){
+        
+        if(map[nums[i]]){
+            return [i, map[nums[i]]]
+        }
+
+        let desiredNum = target - nums[i]
+        map[desiredNum] = i
+    }
+}
+
+
+
+/*
+
+how can i change this algorithm to achive three sum?
+
+we need to weigh three variables so we will introduce three pointers
+1. need a array to store the result
+
+
+
+*/
+
+
+function threeSum(nums, target){
+
+    let result = []
+    for(i =0; i < nums.length; i++){
+     
+        let l = i + 1, r = nums.length -1
+
+        while(i < r){
+            let target = nums[i] + nums[l] + nums[r]
+            if(target === 0){
+                result.push([nums[i]], nums[l], nums[r])
+            }
+             if(target++){
+
+            }else{
+
+            }
+        }
+    }
+}
