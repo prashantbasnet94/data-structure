@@ -221,7 +221,7 @@ var search = function (nums, target) {
             // if target is greater than mid go right
             // target is less than first element of left sorted array, go to right sorted array
 
-            if (nums[mid] < target || nums[l] > target) {
+            if (nums[mid] < target ||  target < nums[l]) {
                 l = mid + 1
             } else {
                 r = mid - 1
@@ -239,3 +239,152 @@ var search = function (nums, target) {
     }
     return -1
 };
+
+
+
+function searchInArray(nums, target){
+
+        let l = 0; r = nums.length -1
+        while(l < r){
+            let mid = Math.floor((l + r) / 2)
+
+            if(nums[mid] === target){
+                return mid
+            }
+            //now if our mid value is less than left Pointer value we are in the left sorted array
+            if(nums[l] <= nums[mid]){
+            // We're in the left half
+            // But we can't just do normal binary search
+            // We need to check if the target is within this left sorted portion
+
+               if( nums[l] < target || target < nums[mid] ){
+               // if the target is within the left sorted array
+               // we can scope down to left sorted array so we bring r closer
+               r = mid -1
+               }else{
+                // the target is in right hand side 
+                l  = mid + 1 
+               }
+            }else{
+                // we are in the right half
+                // we do nomary binary search
+                // if the target is within right sorted portion
+                if( nums[mid] < target || target < nums[r] ){
+                    l = mid + 1
+                }else{
+                    // we know target is in left sorted portion
+                    r = mid -1
+                }
+            }
+        }
+        return -1
+}
+
+
+function searchInRotatedSearchArray(nums, target){
+    let l = 0, r = nums.length -1
+
+
+    while(l <= r){
+        let mid = Math.floor((l + r) / 2)
+
+        if(nums[l] <= nums[mid]){
+            // we know we are in the left soted array
+            // all the elements in the left sorted array is greater than right sorted array 
+            // sorted meanns there are heavier number on the left hand side
+
+
+            // here we we in the left sorted array
+            // we cannot do a normal binary search so we do is,  we need to see if the target is within the bound of 
+            // left sorted  array
+
+            if(nums[l] < target || target < nums[mid]){
+
+            }else{
+                // we go search right sorted array
+                l = mid + 1
+            }
+        }else{
+            // we are on the right sorted array
+
+            // similary we cannot do the normaly binary search,
+            // so first check if the target is within the right sorted array
+            if(nums[mind] < target || target < nums[r]){\
+
+
+            }else{
+                // we need to go to left sorted array
+                r = mid -1
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+function searchInRotatedSearchArray(nums, target){
+    let l = 0, r = nums.length -1
+
+
+    while(l <= r){
+        let mid = Math.floor((l + r) / 2)
+
+        if(nums[mid] === target) return mid
+        if(nums[l] <= nums[mid]){
+            // we know we are in the left soted array
+            // all the elements in the left sorted array is greater than right sorted array 
+            // sorted meanns there are heavier number on the left hand side
+
+
+            // here we we in the left sorted array
+            // we cannot do a normal binary search so we do is,  we need to see if the target is within the bound of 
+            // left sorted  array
+
+            if (nums[l] <= target && target < nums[mid]) {
+                r = mid -1
+            }else{
+                // we go search right sorted array
+                l = mid + 1
+            }
+        }else{
+            // we are on the right sorted array
+
+            // similary we cannot do the normaly binary search,
+            // so first check if the target is within the right sorted array
+            if(nums[mid] < target && target <= nums[r]){
+
+            l = mid + 1
+            }else{
+                // we need to go to left sorted array
+                r = mid -1
+            }
+        }
+    }
+
+    return -1
+}
+
+
+function seven(nums){
+    let l = 0; r = nums.length -1
+
+    while( l <= r){
+        let mid = Math.floor((l + r)/2 )
+
+        if(nums[mid +1 ] < nums[mid]){
+            return nums[mid + 1]
+        }
+
+        if(nums[l] <= nums[mid]){
+            // we are left sorted array
+            l = mid + 1
+        }else{
+            //we are at right sorted array
+            r = mid -1
+        }
+    }
+}

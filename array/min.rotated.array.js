@@ -160,7 +160,7 @@ function findMin(nums){
 
         // now where to go , left or right?
 
-        if(nums[mid] >= nums[l]){
+        if(nums[l] <= nums[mid]){
             // go right
             l = mid + 1
         }else{
@@ -176,3 +176,37 @@ console.log(findMin([3,4,5,1,2]) === 1)
 console.log(findMin([4,5,6,7,0,1,2]) === 0)
 console.log(findMin([11,13,15,17]) === 11)
 
+var search = function (nums, target) {
+    let l = 0, r = nums.length - 1
+
+    while (l <= r) {
+        let mid = Math.floor((l + r) / 2)
+
+        if(nums[mid] === target)return mid
+        // find out where we are
+        if (nums[l] <= nums[mid]) {
+            // left sorted array
+
+            // either go left or right
+
+            // if target is greater than mid go right
+            // target is less than first element of left sorted array, go to right sorted array
+
+            if (nums[mid] < target ||  target < nums[l]) {
+                l = mid + 1
+            } else {
+                r = mid - 1
+            }
+        } else {
+            // right sorted array
+            // if target is less than mid value go left
+            // target is greater than right most value in right sorted array go left
+            if(  target < nums[mid] ||   nums[r] < target ){
+                r = mid - 1
+            }else{
+                l = mid + 1
+            }
+        }
+    }
+    return -1
+};

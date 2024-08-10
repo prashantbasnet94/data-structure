@@ -111,49 +111,30 @@ console.log(threeSum([0,0,0]))
 
 
 
-function twoSum(nums, target){
-    let map = {}
-    for(i =0; i < nums.length; i++){
-        
-        if(map[nums[i]]){
-            return [i, map[nums[i]]]
-        }
-
-        let desiredNum = target - nums[i]
-        map[desiredNum] = i
-    }
-}
 
 
 
-/*
 
-how can i change this algorithm to achive three sum?
+function testThreeSum(input){
+    let results = []
+    for(let i = 0; i < input.length; i++){
+        let l = i + 1, r = input.length - 1
 
-we need to weigh three variables so we will introduce three pointers
-1. need a array to store the result
-
-
-
-*/
-
-
-function threeSum(nums, target){
-
-    let result = []
-    for(i =0; i < nums.length; i++){
-     
-        let l = i + 1, r = nums.length -1
-
-        while(i < r){
-            let target = nums[i] + nums[l] + nums[r]
-            if(target === 0){
-                result.push([nums[i]], nums[l], nums[r])
-            }
-             if(target++){
-
+        let sum = input[i] + input[l] + input[r]
+        while(i <= r){
+            
+            if(sum < 0){
+                l++
+            }else if(0 < sum){
+                r--
             }else{
+                results.push([inputs[i], inputs[l] , inputs[r]])
+                while(i === i +1)i++
+                while(l === l+1)l++
+                while(r === r+1)r--
 
+                l++
+                r--
             }
         }
     }

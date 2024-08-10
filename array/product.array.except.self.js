@@ -102,6 +102,7 @@ function refactored(nums) {
     res[0] = postfix[1];
     res[nums.length - 1] = prefix[nums.length - 2];
 
+    return res
 }
 
 
