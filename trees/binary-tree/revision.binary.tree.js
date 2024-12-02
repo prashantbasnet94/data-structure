@@ -197,3 +197,21 @@ function maxSumPath(root){
         
         return maxSum
 }
+
+
+
+function isSameTree(pTreeNode, qTreeNode){
+    /*
+        grab as you go
+        base cases
+        1. if both nodes are null, it's same return true
+        2. if one nodes exist and other don't return false
+        3. if at anypoint the nodes are not equal return false
+    */
+   if(!pTreeNode && !qTreeNode) return true
+   if(!pTreeNode || !qTreeNode) return false
+   if(pTreeNode.value !== qTreeNode.value) return false
+
+
+    return isSameTree(pTreeNode.left, qTreeNode.left) && isSameTree(pTreeNode.right, qTreeNode.right)
+}

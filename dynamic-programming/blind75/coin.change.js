@@ -178,3 +178,48 @@ function coinChangeRef(coins, totalAmount) {
 
     return dp[totalAmount] === Infinity ? -1 : dp[totalAmount]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function coinChange(coins, amount){
+    const dp = new Array(amount).fill(Infinity)
+    dp[0] = 0
+
+    for (let currentAmount = 0; currentAmount <= amount; currentAmount++ ){
+        // while giving 7 , we  can refer back to [5] and add any avaibale coins and check if we can update [7]
+
+        coins.forEach(coin => {
+            dp[currentAmount] = Math.min(dp[currentAmount - coin], dp[currentAmount])
+        })
+
+    }
+    return dp[amount]
+}
+
+console.log('=========')
+
+console.log(coinChange([1,2,5], 11))
+console.log(coinChange([1], 0))
+
+
+
+
+
+
+
+
+
+
+

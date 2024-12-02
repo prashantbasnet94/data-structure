@@ -65,21 +65,68 @@ let's implement a recursion function
 */
 
                                                                     // this value has to be checked if -1 then we check -1 in fucn
-const dp = new Array(A.length).fill(-1).map(o => new Array(B.length).fill(undefined))
-function lcs(i, j, A, B, dp) {
-    if (A[ i ] !== undefined || B[ j ] !== undefined) {
-        return 0
-    }
+// const dp = new Array(A.length).fill(-1).map(o => new Array(B.length).fill(undefined))
+// function lcs(i, j, A, B, dp) {
+//     if (A[ i ] !== undefined || B[ j ] !== undefined) {
+//         return 0
+//     }
 
-// just fill up the last element with undefiend
-    if (dp[ i ][ j ] !== undefined) {
-        return dp[i][j]
-    }
+// // just fill up the last element with undefiend
+//     if (dp[ i ][ j ] !== undefined) {
+//         return dp[i][j]
+//     }
 
-    if (A[ i ] === B[ j ]) {
-        dp[ i ][ j ] = 1 + lcs(i + 1, j + 1, A, B, dp)
-    } else {
-        dp[i][j] = Math.max(lcs(i + 1, j, A, B, dp), lcs(i, j + 1, A, B, dp))
+//     if (A[ i ] === B[ j ]) {
+//         dp[ i ][ j ] = 1 + lcs(i + 1, j + 1, A, B, dp)
+//     } else {
+//         dp[i][j] = Math.max(lcs(i + 1, j, A, B, dp), lcs(i, j + 1, A, B, dp))
+//     }
+//     return dp[i][j]
+// }
+
+
+var longestCommonSubsequence = function(text1, text2) {
+    const dp = new Array(text1.length).fill(0).map(o => new Array(text2.length).fill(undefined))
+    return lcsOptimized(0, 0, text1, text2, dp)
+};
+
+
+
+function lcsOptimized(i, j, A, B, dp){
+   if (i === A.length || j === B.length) {
+        return 0;
+    }
+    // If we've already computed this subproblem, return the cached result
+    if (dp[i][j] !== undefined) {
+        return dp[i][j];
+    }
+    if(A[i] === B[j]){
+        dp[i][j] =  1 + lcsOptimized(i + 1, j + 1, A, B, dp)
+    }else{
+        dp[i][j] = Math.max(
+            lcsOptimized(i + 1, j , A, B, dp),
+            lcsOptimized(i, j + 1, A , B, dp)
+        )
     }
     return dp[i][j]
 }
+
+
+
+function compareDNASequences(sequence1, sequence2) {
+    const lcsLength = longestCommonSubsequence(sequence1, sequence2);
+    const similarity = (lcsLength / Math.max(sequence1.length, sequence2.length)) * 100;
+    
+    return {
+        lcsLength,
+        similarity: similarity.toFixed(2) + '%',
+        sequence1Length: sequence1.length,
+        sequence2Length: sequence2.length
+    };
+}
+
+const humanDNA = "ATGCGATCGTAGCTAGCTAGCTGATCG";
+const chimpanzeeDNA = "ATGCGATCGTAGCTAGCTAGCTGATCGATCG";
+
+const result = compareDNASequences(humanDNA, chimpanzeeDNA);
+console.log("DNA Sequence Comparison Result:", result);

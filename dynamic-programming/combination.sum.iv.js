@@ -25,7 +25,7 @@ Using a dp array
 
           only 1 way to form a target of 0, index here represents the target,
 
-          check with every single numbers given and look back in our dp array, if our number is less than the target we are checking right now
+          check with every single numbers given and look back in our dp array, if our number is less than the target we are checking 
 
           just look back and substract the number we are checking with our dp array
           and see if we can add up whatever number we had there to the number are given and comparing
@@ -165,4 +165,44 @@ function combinationSumIv(nums, target){
 
 
 
+}
+
+
+
+/*
+
+Imagine you're working at a school cafeteria, and you need to give change to students. Let's break down the problem:
+
+The Setup:
+
+You have an unlimited supply of quarters (25¢), dimes (10¢), and nickels (5¢).
+Your task is to find out how many different ways you can make change for various amounts.
+
+
+
+
+
+
+*/
+
+
+function combinationSumIvDraft(nums, target){
+    const dp = new Array(target).fill(0)
+    //only 1 way to pay 0$ 
+    dp[0] = 1
+
+    for(let amount = 1; amount <=target; amount++){
+        dp[amount] = 0
+
+        for(num of nums){
+            // if only current num is less than the amount, then we can use it to make our solution
+            // For example, you can't use a quarter (25¢) to make 10¢.
+            if(num <= amount){
+                // The number of ways to make 15¢ includes all the ways to make 5¢ (because we just used a 10¢ coin)"
+                dp[amount] += dp[amount - num]
+            }
+        }
+    }
+
+    return dp[target]
 }

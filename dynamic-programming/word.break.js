@@ -181,3 +181,28 @@ function wordBreak(string, words) {
 }
 
 console.log(wordBreak('leetcode',  ['leet', 'code']))
+
+
+
+
+function finalRevision(s, wordDict){
+    const dp = new Array(s.length + 1).fill(false)
+    dp[0] = true
+
+    for(let i = 0; i <= s.length; i++){
+        for(word of wordDict){
+            if(word.length <= i){
+
+    
+                // form a word
+                const start = i - word.length
+                const newword = s.substring(start, i)
+
+                if(dp[start] && newword === word){
+                    dp[i] = true
+                }
+            }
+        }
+    }
+    return dp[s.length]
+}

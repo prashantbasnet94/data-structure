@@ -201,3 +201,55 @@ function optimizeClimbStairs(n) {
 
     return dp[step]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function climbStairs2(n) {
+  if (n === 1 || n === 2) return n;
+  let dp = new Array(n + 1);
+  dp[0] = 1;
+  dp[1] = 1;
+  dp[2] = dp[0] + dp[1];
+  dp[3] = dp[1] + dp[2];
+
+  for (let i = 4; i <= n; i++) {
+    dp[i] = dp[i - 2] + dp[i - 1];
+  }
+  return dp[n];
+}
+
+
+
+console.log(climbStairs2(2)) // 2
+console.log(climbStairs2(3)) // 3
+
+
+
+
+
+
+
+function optimizeClimb(n){
+    let prev = 1
+    let prevPrev = 2
+
+    for(let i = 3; i <=n; i++){
+        let temp = prev + prevPrev
+        prevPrev = prev
+        prev = temp
+    }
+
+    return prev + prevPrev
+}

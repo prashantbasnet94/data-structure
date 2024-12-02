@@ -37,3 +37,26 @@ function wordBreak(seq, words) {
 
     dp[seq.length]
 }
+
+
+
+function finalRevision2(s, wordDict){
+    const dp = new Array[s.length + 1].fill(false)
+    dp[s.length] = true
+
+    for(let i = s.length; i <=0; i--){
+        for(let word of wordDict){
+
+         if(i + word.length <= s.length){
+            const end = i + word.length 
+
+            const newWord = s.substring(i, end)
+
+            if(dp[end] && newWord === word){
+                dp[i] = true 
+            }
+         }
+        }
+    }
+   return  dp[0]
+}

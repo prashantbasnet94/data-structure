@@ -56,3 +56,41 @@ class QueueWithStack{
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+class Queue{
+    constructor(){
+        this.in = []
+        this.out = []
+    }
+    enqueue(value){
+        this.in.push(value)
+    }
+    dequeue(value){
+        if(this.out.length === 0){
+            while(this.in.length !== 0){
+                this.out.push(this.in.pop())
+            }
+        }
+        return this.out.pop()
+    }
+    isEmpty(){
+        return this.in.length === this.out.length && this.out.length === 0 
+    }
+    peek(){
+        if(this.out.length === 0){
+            while(this.in.length !== 0){
+                this.out.push(this.in.pop())
+            }
+        }
+        return this.out[this.out.length - 1]
+    }
+}
