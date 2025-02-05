@@ -281,3 +281,18 @@ Time Complexity:
       dfs(matrix, row + dir[0], col + dir[1], seen, result)
    }
  }
+
+
+
+ function revisionTraversalDFS(array, seen,result,  row, col){
+
+   if(!inBound(row, array.length)|| !inBound(col, array[0].length) || seen[row][col]){
+      return
+   }
+   seen[row][col] = true
+   result.push(array[row][col])
+
+   for(let dir of direction){
+      revisionTraversalDFS(array, seen,result, row + dir[0], col +dir[1])
+   }
+ }

@@ -11,9 +11,9 @@ function KthSmallestElement(root, k) {
         since they are smaller than the current node, before the elements in the right subtree are considered.
         */
         count++
-        if (k === count) {
+        if (k === count) 
             result = node.val
-            return result
+ -=           return result
         }
         inOrder(node.right)
     }

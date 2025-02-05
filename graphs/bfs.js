@@ -126,4 +126,81 @@ const adjacencyList = [
   }
 console.log(traversalBFS(adjacencyList))
   
-  console.log(traversalBFS2(adjacencyList));
+
+
+  class NewGraph{
+    constructor(){
+      this.vertices = []
+      this.totalVetex = 0
+    }
+    addVertex(vertex){
+      this.totalVetex +=1
+      this.vertices[vertex] = []
+    }
+
+    addEdges(vertex1, vertex2){
+      this.vertices[vertex1].push(vertex2)
+      this.vertices[vertex2].push(vertex1)
+    }
+  }
+
+
+  const myNewGraph = new NewGraph()
+
+myNewGraph.addVertex(0)
+myNewGraph.addVertex(1)
+myNewGraph.addVertex(2)
+myNewGraph.addVertex(3)
+myNewGraph.addVertex(5)
+myNewGraph.addVertex(4)
+
+
+myNewGraph.addEdges(0, 1)
+myNewGraph.addEdges(2, 3)
+myNewGraph.addEdges(1, 3)
+myNewGraph.addEdges(0, 3)
+myNewGraph.addEdges(3, 4)
+myNewGraph.addEdges(4, 5)
+
+
+
+function graphBFSTraversal(graph){
+  let result = [], seen = {}, queues = [0]
+
+  while (queues.length > 0) {
+    const vertex = queues.shift()
+    result.push(vertex)
+    seen[vertex] = true
+
+    const conns = graph[vertex]
+
+    for (let i = 0; i < conns.length; i++) {
+      if (!seen[conns[i]]) {
+        queues.push(conns[i])
+      }
+    }
+  }
+  return result
+}
+
+
+function graphBFS(){
+  let queue = [], result = [], seen = {}
+  queue.push(0)
+  while(queue.length > 0){
+      let vertex = queue.shift()
+      seen[vertex] = true
+      result.push(vertex)
+      // [3, 2]
+      const connections =  graph[vertex]
+      for(let i = 0; i < connections.length; i++){
+          if(!seen[connections[i]]){
+              queue.push(connections[i])
+          }
+      }
+  }
+  return result
+}
+
+console.log(graphBFSTraversal(myNewGraph.vertices))
+console.log(traversalBFS(myNewGraph.vertices))

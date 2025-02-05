@@ -75,6 +75,8 @@ function uniquePaths(m, n) {
     const queue = [[m - 2 , n - 2]]
     while(queue.length > 0){
         let [row, col] = queue.shift()
+        console.table(ways)
+
         
         if(!inBound(row, m) || !inBound(col, n) || seen[row][col]){
             continue
@@ -183,3 +185,4 @@ function uniquePathsRefactored(m, n){
 
 console.log(uniquePathsRefactored(3, 7))
  
+console.log(uniquePaths(3, 7))

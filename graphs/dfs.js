@@ -88,6 +88,38 @@ function traversalDFS(graph, result, vertex, seen){
   
   const values = [];
 //   traversalDFS2(0, adjacencyList, values, {})
-  traversalDFS(adjacencyList, values,0, {})
+// graphDFS2(adjacencyList, values,0, {})
   
   console.log(values);
+
+
+
+  function graphDFS(vertex, result, seen, graph){
+    result.push(vertex)
+    seen[vertex] = true
+
+    let connections = graph[vertex]
+    for(let i = 0; i < connections.length; i++){
+       if(!seen[connections[i]]){
+        graphDFS(connections[i], result, seen, graph)
+       }
+    }
+  }
+
+  function graphDFS(vertex, result, seen, graph){
+    result.push(vertex)
+    seen[vertex] = true
+
+    const connections = graph[vertex]
+    for(let i = 0; i < connections.length; i++){
+        if(!seen[connections[i]]){
+          graphDFS(vertex, result, seen, graph)
+        }
+    }
+}
+
+const values2 = [];
+//   traversalDFS2(0, adjacencyList, values, {})
+// graphDFS2(0,values2,  {}, adjacencyList)
+graphDFS(0, values2,  {}, adjacencyList)
+  console.log({values2});
