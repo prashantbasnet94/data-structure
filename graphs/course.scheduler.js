@@ -8,7 +8,8 @@
 
 
 
-As we can see, this question doesn't explicitly tells us this is a graph question. We have to look at it and figure out if there is a graph structure here.
+As we can see, this question doesn't explicitly tells us this is a graph question. We have to look at it and 
+figure out if there is a graph structure here.
 
 
 let look at a example:
@@ -545,3 +546,8 @@ function decreementDegree (indegree, adajcentList, seen){
   }
 }
 topologicalSort(6, coursesprelist)
+
+
+
+
+

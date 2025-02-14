@@ -337,3 +337,38 @@ function bfs(row, col, board, word, at) {
     return result
 }
 
+
+
+
+const directions = [
+    [-1, 0] //top
+    [0, 1], //right
+    [1, 0], //down 
+    [0, -1], //left
+]
+function BFSrevise(array){
+    let result = []
+    let queue = []
+    let seen = new Array(array.length).fill(0).map( o  => new Array(array[0].length).fill(false))
+    const inbound = (x, max) = -1 < x && x < max
+
+    
+    queue.push([0, 0])
+
+    while(queue.length > 0 ){
+        let [row, col] = queue.shift()
+        if(!inbound(row, array.length) || !inbound(col, array[0].length) || seen[row][col]){
+            continue
+        }
+        seen[row][col] = true
+        result.push(array[row][col])
+        for(let [newRow, newCol] of directions){
+            let newRowDir = row + newRow
+            let newColDir = col + newCol
+            if(inbound(newRowDir, array.length) && inbound(newColDir, array[0].length)){
+                queue.push([newRowDir, newColDir])
+            }
+        }
+    }
+    return result
+}

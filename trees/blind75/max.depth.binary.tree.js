@@ -130,3 +130,25 @@ function bfsLevelOrder(node){
         }
 
 */
+
+function postOrder(node, length){
+   
+    if(!node){
+        return 0
+    }
+    let leftDepth = postOrder(node.left)
+    let rightDepth =  postOrder(node.right)
+
+    return 1 + Math.max(leftDepth, rightDepth )
+
+}
+
+function postOrder(node){
+    if(!node) return 0
+    return 1 + Math.max(postOrder(node.left), postOrder(node.right))
+}
+function maxDepthRevised(root){
+    return 1 + Math.max(postOrder(node.left), postOrder(node.right))
+}
+
+//https://unisala.com/threads/maximum-depth-of-binary-tree-blind-75-leetcode-673e70bbd112347a2a08f58d
