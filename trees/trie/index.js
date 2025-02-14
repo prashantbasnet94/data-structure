@@ -283,3 +283,39 @@ class trie {
     }
 
 }
+
+
+
+
+
+class Trie{
+    constructor(){
+        this.root = {
+            keys:{},
+            isEnd: false
+        }
+    }
+    insert(word, node = this.root){
+        if(word.length === 0){
+            node.isEnd = true
+            return
+        }
+
+        if(!node.keys[word[0]]){
+            node.keys[word[0]] = {
+                keys:{},
+                isEnd: false
+            }
+        }
+        this.insert(word.substring(1), node.keys[word[0]])
+    }
+    search(word, node = this.root){
+        if(word.length === 0){
+            return node.isEnd
+        }
+        if(!node.keys[word[0]]){
+            return false
+        }
+        return this.search(word.substring(1), node.keys[word[0]])
+    }
+}

@@ -171,9 +171,11 @@ The only way that we can insert 45 is at the next available spot. Following Brea
 
     Insights:
      The reason why we implemented the heap in the first place particalualy a max heap is,
-     we will provice the values, and whenever i want to retrieve a value from you , you have to give me the greatest value amongst the values i supplied
+     we will provice the values, and whenever i want to retrieve a value from you , you have to give me the greatest value
+      amongst the values i supplied
 
-    So this is why with the max heap, whenever we talk about removal, deletion or retrieveing a value from this heap, the only condition we want to 
+    So this is why with the max heap, whenever we talk about removal, deletion or retrieveing a value from this heap, 
+    the only condition we want to 
     satify is that we're getting the greatest value, which  is root value in max heap.
 
 

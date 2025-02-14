@@ -60,3 +60,60 @@ b. So once again we find go barber then cafe, find violating the constraint, so 
 
 
 */
+
+const results = [];
+
+function backTrack(start, currentList) {
+  let sum = currentList.reduce((acc, current) => acc + current, 0);
+
+  if (sum === target) {
+    results.push([...currentList]);
+  }
+  if (target < sum) {
+    return;
+  }
+  for (let i = start; i < nums.length; i++) {
+    currentList.push(nums[i]);
+    backTrack(i, currentList);
+    currentList.pop();
+  }
+}
+
+backTrack(0, []);
+return results;
+
+
+
+
+combinationSum2(candidates, target) {
+  candidates.sort((a, b) => a - b); // Sort first to handle duplicates
+
+  const results = [];
+
+  function backTrack(start, currentList) {
+    const sum = currentList.reduce((acc, curr) => acc + curr, 0);
+
+    if (sum === target) {
+      // Create key by joining the current combination
+      const key = currentList.join(",");
+      // Store the array as value
+      // results.set(key, [...currentList]);
+      results.push([...currentList]);
+    }
+
+    if (target < sum) {
+      return;
+    }
+
+    for (let i = start; i < candidates.length; i++) {
+      if (start < i && candidates[i] === candidates[i - 1]) continue;
+
+      currentList.push(candidates[i]);
+      backTrack(i + 1, currentList);
+      currentList.pop();
+    }
+  }
+
+  backTrack(0, []);
+  return results;
+}

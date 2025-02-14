@@ -190,7 +190,8 @@ if land : {
 
 
 Now let's think about the order to explore the elemnents. We have BFS and DFs and as well as sequential order.
-The reason why the sequential order is important is because sometimes the order of BFS or DFS as the exploration pattern for the elements in a 2D array is not going to
+The reason why the sequential order is important is because sometimes the order of BFS or DFS as the exploration pattern
+ for the elements in a 2D array is not going to
 actaully get you to the correct answer. 
 Sometimes BFS or DFS is a part of solving the sub problem, not the main traversal pattern.
 
@@ -282,8 +283,8 @@ If we think back, we know that the behaviour of an old island is exact same as f
 So what we can do is take that portion where we traverse from the value and implment BFS or DFS, flip the land(1) as water(0).
 We can even flip current Array[0][0]  = 1 to 0 as well
 
-The main idea is that by traversing using BFS or DFS, from the moment we take the new island, we switch all of these values and it's adjacent neighbour values
-until it's permiter is water to 0
+The main idea is that by traversing using BFS or DFS, from the moment we take the new island, we switch all of these values 
+and it's adjacent neighbour values until it's permiter is water to 0
 
 [       0    1    2    3    4  
     0   [1,  1,   1,   1,   0],

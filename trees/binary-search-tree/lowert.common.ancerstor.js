@@ -14,7 +14,7 @@ function lowestCommonAncestor(root, p, q){
     if(!root)return null
 
     // if root val is greater than both node go left to find smaller val
-    if(root.val > p.val && root.val > q.val){
+    if( p.val < root.val  &&  q.val < root.val ){
         return lowestCommonAncestor(root.left, p, q)
         // if root val is smaller than both the node than go right to find bigger val
     }else if(root.val < p.val && root.val < q.val){

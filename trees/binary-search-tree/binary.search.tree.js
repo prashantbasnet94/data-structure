@@ -191,7 +191,7 @@ class BinarySearchTree {
             if (currentNode.value < value) {
                 parentNode = currentNode
                 currentNode = currentNode.right
-            } else if (currentNode.value > value) {
+            } else if (value < currentNode.value) {
                 parentNode = currentNode
                 currentNode = currentNode.left
             } else {
@@ -214,7 +214,7 @@ class BinarySearchTree {
                             i. true => this.root = C
                             else it exist:
                             i. Parent Exist!
-                                a. If parentValue  A > currentNodeValue B
+                                a. If currentNodeValue B <  parentValue  A 
                                     parentNode.left = currentNode.left
                                     i.e A.left = C
                 result:
@@ -259,7 +259,7 @@ class BinarySearchTree {
                         this.root = currentNode.left
                     } else {
                         //if parent > currentValue make current left child a  child of parent
-                        if (parentNode.value > currentNode.value) {
+                        if ( currentNode.value < parentNode.value ) {
                             parentNode.left = currentNode.left
                         } else if (parentNode.value < currentNode.value) {
                             // if parent < currnet value, make left child a right child of parent
@@ -287,7 +287,7 @@ class BinarySearchTree {
                             i. true => this.root = C
                             else it exist:
                             i. Parent Exist!
-                                a. If parentValue  A > currentNodeValue B
+                                a. If  currentNodeValue B < parentValue  A 
                                     parentNode.left = currentNode.right
                                     i.e A.left = C
                 result:
@@ -330,7 +330,7 @@ class BinarySearchTree {
                         this.root = currentNode.left
                     } else {
                         // if parent > current, make right child the left child of parent
-                        if (parentNode.value > currentNode.value) {
+                        if ( currentNode.value < parentNode.value ) {
                             parentNode.left = currentNode.right
                         }
                         //if parent < currnet, make right child a right chidle of the parent
@@ -446,7 +446,7 @@ class BinarySearchTree {
                     if (!parentNode) {
                         this.root = leftMostChild
                     } else {
-                        if (parentNode.value > currentNode.value) {
+                        if ( currentNode.value < parentNode.value) {
                             parentNode.left = leftMostChild
                         } else if (parentNode.value < currentNode.value) {
                             parentNode.right = leftMostChild

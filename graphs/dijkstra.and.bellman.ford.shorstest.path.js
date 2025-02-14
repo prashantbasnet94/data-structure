@@ -7,8 +7,8 @@ Know when to use Bellman-Ford or Dijkstra algo to figure out shortest path probl
 
 But why do we need these algo? we already know BFS is used for shortest path problem.
 BFS is great for shortest path problem but there is one thing it can't do.
-
-It assumes that each jump to another node in a graph. It asssumes that each path has (equal || same) weight.
+de in
+It assumes that each jump to another no a graph. It asssumes that each path has (equal || same) weight.
 DFS and BFS does not care what kind of weight an Edge has
 
 For example,

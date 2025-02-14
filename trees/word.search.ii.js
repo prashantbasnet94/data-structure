@@ -103,7 +103,6 @@ function findWords2(board, words) {
         const
             currentChar = board[row][col],
             childNode = node.keys[currentChar]
-        console.log({ currentChar, keys: node.keys, childNode })
 
         for (let [rowDir, colDir] of directions) {
             dfs(childNode, row + rowDir, col + colDir, word + currentChar)
@@ -122,7 +121,6 @@ function findWords2(board, words) {
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[0].length; j++) {
             const currentChar = board[i][j]
-            console.log(currentChar, trie.root.keys[currentChar])
             dfs(trie.root.keys[currentChar], i, j, currentChar)
         }
     }

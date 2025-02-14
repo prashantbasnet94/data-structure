@@ -190,3 +190,60 @@ console.log(tree.root)
 
 
 
+
+
+function myNode(value){
+    return{
+        value, 
+        left: null,
+        right:null
+    }
+}
+
+class MyBST{
+    constructor(){
+        this.root = null
+    }
+    insert(value){
+        if(!root){
+            this.root = myNode(value)
+            return
+        }
+        let currentNode = this.root
+        while(true){
+          if(currentNode.value < value ){
+              // go to right
+              if(!currentNode.left){
+                  currentNode.left = myNode(value)
+                  return
+              }
+              currentNode = currentNode.left
+          }else{
+              // go to left
+              if(!currentNode.right){
+                  currentNode.right = myNode(value)
+                  return
+              }
+              currentNode = currentNode.right
+          }
+        }
+    }
+    lookup(value){
+        if(!this.root){
+            return false
+        }
+        let currentNode = this.root
+        while(currentNode){
+            if(currentNode.value === value){
+                return currentNode
+            }
+            if(currentNode.value < value){
+                // go to right
+                currentNode = currentNode.right
+            }else{
+                // got to left
+                currentNode = currentNode.left
+            }
+        }
+    }
+}

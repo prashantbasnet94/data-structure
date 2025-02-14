@@ -3,7 +3,7 @@ https://www.udemy.com/course/master-the-coding-interview-big-tech-faang-intervie
 
     Verify Constraints
 
-1. Can there be duplicate calues in the tree?
+1. Can there be duplicate values in the tree?
 yes, if you receive duplicate values the tree is not a valid valid bianry search tree
 
 Test Cases:
